@@ -57,8 +57,8 @@ function ScenarioBuilder({ team, fixtures, percentage, onScenariosChange }) {
   return (
     <div className="scenario-builder">
       <div className="scenario-header">
-        <h3 className="scenario-title">Test Scenarios</h3>
-        <p className="scenario-subtitle">Next {teamFixtures.length} Fixtures</p>
+        <h3 className="scenario-title">PLAY GOD</h3>
+        <p className="scenario-subtitle">Your fate in your hands ({teamFixtures.length} fixtures)</p>
       </div>
 
       <div className="scenario-container">

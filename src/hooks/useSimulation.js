@@ -4,6 +4,7 @@ import { runSurvivalSimulation, getTeamFixtures } from '../lib/simulation';
 export function useSimulation(team, standings, fixtures, scenarios = null) {
   const [percentage, setPercentage] = useState(null);
   const [calculating, setCalculating] = useState(false);
+  const [progress, setProgress] = useState({ current: 0, total: 0 });
 
   const calculate = useCallback(() => {
     if (!team || !standings || !fixtures) {
@@ -11,22 +12,33 @@ export function useSimulation(team, standings, fixtures, scenarios = null) {
     }
 
     setCalculating(true);
+    setProgress({ current: 0, total: 0 });
 
-    // Defer calculation to next tick to avoid blocking UI
-    const timeoutId = setTimeout(() => {
-      try {
-        const result = runSurvivalSimulation(team, standings, fixtures, scenarios || {});
+    // Run simulation with progress tracking
+    const simulationPromise = runSurvivalSimulation(
+      team,
+      standings,
+      fixtures,
+      scenarios || {},
+      (current, total) => {
+        setProgress({ current, total });
+      }
+    );
+
+    // Handle both Promise and sync returns for backward compatibility
+    Promise.resolve(simulationPromise)
+      .then((result) => {
         setPercentage(result);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error('Error running simulation:', error);
         setPercentage(0);
-      } finally {
+      })
+      .finally(() => {
         setCalculating(false);
-      }
-    }, 50);
-
-    return () => clearTimeout(timeoutId);
-  }, [team, standings, fixtures]);
+        setProgress({ current: 0, total: 0 });
+      });
+  }, [team, standings, fixtures, scenarios]);
 
   // Recalculate when team, data, or scenarios change
   useEffect(() => {
@@ -38,6 +50,7 @@ export function useSimulation(team, standings, fixtures, scenarios = null) {
   return {
     percentage,
     calculating,
+    progress,
     recalculate: calculate,
   };
 }

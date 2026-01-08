@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { getSurvivalColor, getThresholdLabel } from '../data/historicalThresholds';
+import { getReactionForPercentage, CALCULATING_MESSAGES } from '../utils/banterMessages';
 import ProgressBar from './ProgressBar';
+import MonteCarloAnimation from './MonteCarloAnimation';
 import './SurvivalDisplay.css';
 
 // Import badge SVGs for all teams
 const badges = import.meta.glob('../assets/badges/*.svg', { eager: true });
 
-function SurvivalDisplay({ team, teamStanding, percentage, calculating, standings }) {
+function SurvivalDisplay({ team, teamStanding, percentage, calculating, standings, progress = { current: 0, total: 0 } }) {
   const [displayPercentage, setDisplayPercentage] = useState(null);
   const [prevPercentage, setPrevPercentage] = useState(null);
+  const [messageIndex, setMessageIndex] = useState(0);
 
   useEffect(() => {
     if (percentage !== null && percentage !== prevPercentage) {
@@ -17,6 +20,17 @@ function SurvivalDisplay({ team, teamStanding, percentage, calculating, standing
     }
   }, [percentage, prevPercentage]);
 
+  // Rotate through calculating messages every 300ms
+  useEffect(() => {
+    if (!calculating) return;
+
+    const interval = setInterval(() => {
+      setMessageIndex((prev) => (prev + 1) % CALCULATING_MESSAGES.length);
+    }, 300);
+
+    return () => clearInterval(interval);
+  }, [calculating]);
+
   if (!team || !teamStanding) {
     return null;
   }
@@ -24,6 +38,10 @@ function SurvivalDisplay({ team, teamStanding, percentage, calculating, standing
   const survivalColor = displayPercentage ? getSurvivalColor(displayPercentage) : 'nervous';
   const threshold = getThresholdLabel(teamStanding.points);
   const gamesRemaining = 38 - teamStanding.playedGames;
+  const reaction = displayPercentage ? getReactionForPercentage(displayPercentage) : null;
+
+  // Calculate points needed for safety
+  const pointsNeeded = Math.max(0, threshold.points - teamStanding.points);
 
   // Get badge SVG path
   const badgePath = `../assets/badges/${team.slug}.svg`;
@@ -68,9 +86,17 @@ function SurvivalDisplay({ team, teamStanding, percentage, calculating, standing
         {/* Big Percentage Number */}
         <div className="percentage-section">
           {displayPercentage !== null && !calculating ? (
-            <div className={`percentage-number animated ${survivalColor}`}>
-              {Math.round(displayPercentage * 10) / 10}%
-            </div>
+            <>
+              <div className={`percentage-number animated ${survivalColor}`}>
+                {Math.round(displayPercentage * 10) / 10}%
+              </div>
+              {reaction && (
+                <div className="reaction-text">
+                  <span className="reaction-emoji">{reaction.emoji}</span>
+                  <span className="reaction-primary">{reaction.primary}</span>
+                </div>
+              )}
+            </>
           ) : (
             <div className="percentage-skeleton"></div>
           )}
@@ -113,11 +139,29 @@ function SurvivalDisplay({ team, teamStanding, percentage, calculating, standing
           </p>
         </div>
 
-        {/* Calculating State */}
+        {/* What You Need */}
+        {pointsNeeded > 0 && displayPercentage !== null && (
+          <div className="what-you-need">
+            <p className="what-you-need-label">What You Need:</p>
+            <p className="what-you-need-value">
+              <span className="points-needed">{pointsNeeded} points</span> from {gamesRemaining} games
+            </p>
+          </div>
+        )}
+
+        {/* Calculating State - Enhanced Overlay */}
         {calculating && (
-          <div className="calculating-indicator">
-            <div className="spinner"></div>
-            <span>Calculating...</span>
+          <div className="calculating-overlay">
+            {/* Monte Carlo Particle Animation */}
+            <MonteCarloAnimation progress={progress} />
+
+            {/* Rotating Banter Messages */}
+            <div className="calculating-messages">
+              <div className="message-content">
+                <div className="message-spinner">⚡</div>
+                <p className="message-text">{CALCULATING_MESSAGES[messageIndex]}</p>
+              </div>
+            </div>
           </div>
         )}
       </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getShareText } from '../utils/banterMessages';
 import './ShareButtons.css';
 
 function ShareButtons({ team, percentage }) {
@@ -10,12 +11,9 @@ function ShareButtons({ team, percentage }) {
 
   const percentageStr = Math.round(percentage * 10) / 10;
   const currentUrl = window.location.href;
-  const teamName = team.name;
 
-  // Share text for social media
-  const shareText = `${teamName} have a ${percentageStr}% chance of Premier League survival! 🎯
-
-Check the odds and test scenarios for all teams 👇`;
+  // Use dynamic share text from banter system
+  const shareText = getShareText(team, percentageStr);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(currentUrl);
@@ -36,8 +34,8 @@ Check the odds and test scenarios for all teams 👇`;
   return (
     <div className="share-buttons">
       <div className="share-header">
-        <h3 className="share-title">Share Your Odds</h3>
-        <p className="share-subtitle">Challenge your rivals</p>
+        <h3 className="share-title">RATIO YOUR RIVALS</h3>
+        <p className="share-subtitle">Talk your talk</p>
       </div>
 
       <div className="share-buttons-group">

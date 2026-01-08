@@ -1,20 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  /* Background colors */
   --bg-primary: #0A0E1A;
   --bg-secondary: #151B2D;
   --bg-tertiary: #1E2740;
   --bg-elevated: #252E47;
+  --bg-rage: #1a0000;
+
+  /* Text colors */
   --text-primary: #FFFFFF;
   --text-secondary: #B8C5D6;
   --text-tertiary: #7A8BA3;
-  --color-safe: #22C55E;
+
+  /* Status colors - INTENSIFIED */
+  --color-safe: #10EF5E;
+  --color-safe-dim: #22C55E;
   --color-nervous: #FBBF24;
-  --color-danger: #EF4444;
+  --color-danger: #FF2525;
+  --color-danger-dim: #EF4444;
+  --color-electric: #00F0FF;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', 'Inter', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Display text sizes */
+  --text-display-xl: 8rem;
+  --text-display-lg: 4rem;
+  --text-display-md: 3rem;
 }
 
 * {
@@ -45,7 +63,7 @@
   }
 
   .gradient-safe {
-    background: linear-gradient(135deg, #22C55E 0%, #10B981 100%);
+    background: linear-gradient(135deg, #10EF5E 0%, #22C55E 100%);
   }
 
   .gradient-nervous {
@@ -53,7 +71,7 @@
   }
 
   .gradient-danger {
-    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+    background: linear-gradient(135deg, #FF2525 0%, #EF4444 100%);
   }
 
   /* Utility classes for responsive padding */

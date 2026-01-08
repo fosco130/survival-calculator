@@ -24,8 +24,8 @@ function RivalsPanel({ currentTeamId, standings, survivalPercentages = {} }) {
   return (
     <div className="rivals-panel">
       <div className="rivals-header">
-        <h3 className="rivals-title">Relegation Battle</h3>
-        <p className="rivals-subtitle">Bottom 10 Teams</p>
+        <h3 className="rivals-title">THE DEATH ZONE</h3>
+        <p className="rivals-subtitle">Who's in the mud? ({rivalTeams.length} teams)</p>
       </div>
 
       <div className="rivals-table">
@@ -34,11 +34,12 @@ function RivalsPanel({ currentTeamId, standings, survivalPercentages = {} }) {
           const survivalPercentage = survivalPercentages[standing.id] || 0.5;
           const survivalColor = getSurvivalColor(survivalPercentage);
           const isCurrentTeam = standing.id === currentTeamId;
+          const isRellegationZone = standing.position >= 18;
 
           return (
             <div
               key={standing.id}
-              className={`rival-row ${survivalColor} ${isCurrentTeam ? 'current' : ''}`}
+              className={`rival-row ${survivalColor} ${isCurrentTeam ? 'current' : ''} ${isRellegationZone ? 'relegation-zone' : ''}`}
             >
               {/* Current team indicator */}
               {isCurrentTeam && <div className="current-indicator">→</div>}
@@ -48,15 +49,29 @@ function RivalsPanel({ currentTeamId, standings, survivalPercentages = {} }) {
 
               {/* Team badge and name */}
               <div className="rival-team">
-                <div
-                  className="rival-badge"
-                  style={{
-                    background: team?.colors?.primary || '#999',
-                    color: team?.colors?.secondary || '#fff',
-                    borderColor: team?.colors?.primary || '#999',
-                  }}
-                >
-                  {team?.shortName || '?'}
+                <div className="rival-badge-wrapper">
+                  {standing.crest ? (
+                    <img
+                      src={standing.crest}
+                      alt={`${standing.name} crest`}
+                      className="rival-badge-image"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                  ) : null}
+                  <div
+                    className="rival-badge"
+                    style={{
+                      background: team?.colors?.primary || '#999',
+                      color: team?.colors?.secondary || '#fff',
+                      borderColor: team?.colors?.primary || '#999',
+                      display: standing.crest ? 'none' : 'flex',
+                    }}
+                  >
+                    {team?.shortName || '?'}
+                  </div>
                 </div>
                 <div className="rival-name">{team?.name || 'Unknown'}</div>
               </div>

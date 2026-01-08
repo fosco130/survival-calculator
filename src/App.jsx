@@ -12,11 +12,15 @@ import ScenarioBuilder from './components/ScenarioBuilder';
 import ShareButtons from './components/ShareButtons';
 import LoadingSkeleton from './components/LoadingSkeleton';
 import ErrorState from './components/ErrorState';
+import MethodologyModal from './components/MethodologyModal';
 import './App.css';
 
 function App() {
   // Scenario builder state
   const [scenarios, setScenarios] = useState({});
+
+  // Methodology modal state
+  const [isMethodologyOpen, setIsMethodologyOpen] = useState(false);
 
   // URL-based team selection (defaults to Leeds)
   const [teamSlug, setTeamSlug] = useUrlTeam('leeds');
@@ -31,7 +35,7 @@ function App() {
   const fixtures = fixturesData?.fixtures || null;
 
   // Run simulation with scenarios
-  const { percentage, calculating } = useSimulation(team, standings, fixtures, scenarios);
+  const { percentage, calculating, progress } = useSimulation(team, standings, fixtures, scenarios);
 
   // Reset scenarios when team changes
   useEffect(() => {
@@ -61,8 +65,16 @@ function App() {
       <header className="header">
         <div className="container-app py-8 md:py-12">
           <div className="header-content">
-            <h1 className="header-title">Premier League Survival Calculator</h1>
-            <p className="header-tagline">Calculate any team's relegation odds</p>
+            <h1 className="header-title">WHO'S GETTING RELEGATED?</h1>
+            <p className="header-tagline">The drop is coming. Is it for you?</p>
+            <button
+              className="methodology-button"
+              onClick={() => setIsMethodologyOpen(true)}
+              title="Learn how this works"
+            >
+              <span className="methodology-icon">ⓘ</span>
+              <span className="methodology-text">How does this work?</span>
+            </button>
           </div>
         </div>
       </header>
@@ -93,6 +105,7 @@ function App() {
                 percentage={percentage}
                 calculating={calculating}
                 standings={standings}
+                progress={progress}
               />
 
               {/* Scenario Builder - Test Fixtures */}
@@ -142,6 +155,12 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Methodology Modal */}
+      <MethodologyModal
+        isOpen={isMethodologyOpen}
+        onClose={() => setIsMethodologyOpen(false)}
+      />
     </div>
   );
 }

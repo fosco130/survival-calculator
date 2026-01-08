@@ -5,7 +5,7 @@ import { SIMULATION_PARAMS, RELEGATION_THRESHOLDS } from '../data/constants';
 import { getStrengthForAllTeams } from './teamStrength';
 import { simulateMatch, applyMatchResult } from './matchSimulation';
 
-export function runSurvivalSimulation(targetTeam, standings, fixtures, scenarios = {}) {
+export function runSurvivalSimulation(targetTeam, standings, fixtures, scenarios = {}, onProgress = null) {
   if (
     !targetTeam ||
     !standings ||
@@ -32,62 +32,86 @@ export function runSurvivalSimulation(targetTeam, standings, fixtures, scenarios
   // Calculate strength for all teams once (outside loop for performance)
   const teamsWithStrength = getStrengthForAllTeams(standings);
 
-  for (let i = 0; i < iterations; i++) {
-    // Deep clone the standings for this simulation run
-    const simulatedTable = JSON.parse(JSON.stringify(teamsWithStrength));
+  // Run simulations with optional progress reporting
+  return new Promise((resolve) => {
+    let i = 0;
+    const CHUNK_SIZE = 200; // Process 200 iterations per frame
 
-    // Simulate each remaining fixture
-    for (const fixture of remainingFixtures) {
-      // Check if user has set a scenario for this fixture
-      const fixtureKey = `${fixture.id}`;
-      let result;
+    function processChunk() {
+      const endIteration = Math.min(i + CHUNK_SIZE, iterations);
 
-      if (scenarios && scenarios[fixtureKey]) {
-        // Use user-provided scenario
-        result = scenarios[fixtureKey];
-      } else {
-        // Simulate the match based on team strength
-        const homeTeam = simulatedTable.find((t) => t.id === fixture.homeTeam.id);
-        const awayTeam = simulatedTable.find((t) => t.id === fixture.awayTeam.id);
+      for (; i < endIteration; i++) {
+        // Deep clone the standings for this simulation run
+        const simulatedTable = JSON.parse(JSON.stringify(teamsWithStrength));
 
-        if (!homeTeam || !awayTeam) {
-          console.warn('Team not found in simulated table:', {
-            homeTeam: fixture.homeTeam.id,
-            awayTeam: fixture.awayTeam.id,
-          });
-          continue;
+        // Simulate each remaining fixture
+        for (const fixture of remainingFixtures) {
+          // Check if user has set a scenario for this fixture
+          const fixtureKey = `${fixture.id}`;
+          let result;
+
+          if (scenarios && scenarios[fixtureKey]) {
+            // Use user-provided scenario
+            result = scenarios[fixtureKey];
+          } else {
+            // Simulate the match based on team strength
+            const homeTeam = simulatedTable.find((t) => t.id === fixture.homeTeam.id);
+            const awayTeam = simulatedTable.find((t) => t.id === fixture.awayTeam.id);
+
+            if (!homeTeam || !awayTeam) {
+              console.warn('Team not found in simulated table:', {
+                homeTeam: fixture.homeTeam.id,
+                awayTeam: fixture.awayTeam.id,
+              });
+              continue;
+            }
+
+            result = simulateMatch(homeTeam, awayTeam);
+          }
+
+          // Apply result to simulated table
+          const homeTeam = simulatedTable.find((t) => t.id === fixture.homeTeam.id);
+          const awayTeam = simulatedTable.find((t) => t.id === fixture.awayTeam.id);
+
+          if (homeTeam && awayTeam) {
+            applyMatchResult(result, homeTeam, awayTeam, simulatedTable);
+          }
         }
 
-        result = simulateMatch(homeTeam, awayTeam);
+        // Sort table by final standings (points, then goal difference, then goals for)
+        simulatedTable.sort((a, b) => {
+          if (b.points !== a.points) return b.points - a.points;
+          if (b.goalDifference !== a.goalDifference) return b.goalDifference - a.goalDifference;
+          return b.goalsFor - a.goalsFor;
+        });
+
+        // Check if target team survived (position 17 or higher)
+        const finalPosition = simulatedTable.findIndex((t) => t.id === targetTeam.id) + 1;
+
+        if (finalPosition <= RELEGATION_THRESHOLDS.SAFE_POSITION) {
+          survivalCount++;
+        }
       }
 
-      // Apply result to simulated table
-      const homeTeam = simulatedTable.find((t) => t.id === fixture.homeTeam.id);
-      const awayTeam = simulatedTable.find((t) => t.id === fixture.awayTeam.id);
+      // Report progress if callback provided
+      if (onProgress && i < iterations) {
+        onProgress(i, iterations);
+      }
 
-      if (homeTeam && awayTeam) {
-        applyMatchResult(result, homeTeam, awayTeam, simulatedTable);
+      // Continue processing or finish
+      if (i < iterations) {
+        requestAnimationFrame(processChunk);
+      } else {
+        // Calculate percentage and round to 1 decimal place
+        const percentage = (survivalCount / iterations) * 100;
+        const result = Math.round(percentage * 10) / 10;
+        resolve(result);
       }
     }
 
-    // Sort table by final standings (points, then goal difference, then goals for)
-    simulatedTable.sort((a, b) => {
-      if (b.points !== a.points) return b.points - a.points;
-      if (b.goalDifference !== a.goalDifference) return b.goalDifference - a.goalDifference;
-      return b.goalsFor - a.goalsFor;
-    });
-
-    // Check if target team survived (position 17 or higher)
-    const finalPosition = simulatedTable.findIndex((t) => t.id === targetTeam.id) + 1;
-
-    if (finalPosition <= RELEGATION_THRESHOLDS.SAFE_POSITION) {
-      survivalCount++;
-    }
-  }
-
-  // Calculate percentage and round to 1 decimal place
-  const percentage = (survivalCount / iterations) * 100;
-  return Math.round(percentage * 10) / 10;
+    // Start processing
+    processChunk();
+  });
 }
 
 // Get fixtures for specific team

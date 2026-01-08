@@ -32,7 +32,20 @@ function TeamSelector({ selectedTeamId, onTeamSelect, standings }) {
               }}
             >
               <div className="badge-content">
-                <div className="badge-initials">{team.shortName}</div>
+                {teamStanding?.crest ? (
+                  <img
+                    src={teamStanding.crest}
+                    alt={`${team.name} crest`}
+                    className="badge-crest"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextElementSibling.style.display = 'flex';
+                    }}
+                  />
+                ) : null}
+                <div className="badge-initials" style={{ display: teamStanding?.crest ? 'none' : 'flex' }}>
+                  {team.shortName}
+                </div>
                 {teamStanding && (
                   <div className="badge-position">{teamStanding.position}</div>
                 )}

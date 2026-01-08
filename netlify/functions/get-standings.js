@@ -46,6 +46,7 @@ function transformStandingsData(rawData) {
     id: entry.team.id,
     name: entry.team.name,
     shortName: entry.team.shortName,
+    crest: entry.team.crest, // Include club crest URL from API
     position: entry.position,
     points: entry.points,
     playedGames: entry.playedGames,
