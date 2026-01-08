@@ -62,18 +62,19 @@ function transformFixturesData(rawData) {
   };
 }
 
-export default async (req, context) => {
+export const handler = async (event, context) => {
   // Check if we have cached data that's still fresh
   if (cachedData && cacheTime && Date.now() - cacheTime < CACHE_TTL) {
     console.log('Returning cached fixtures data');
-    return new Response(JSON.stringify(cachedData), {
-      status: 200,
+    return {
+      statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'public, max-age=3600',
         'X-Cache-Status': 'HIT',
       },
-    });
+      body: JSON.stringify(cachedData),
+    };
   }
 
   try {
@@ -83,41 +84,41 @@ export default async (req, context) => {
     cachedData = fixtures;
     cacheTime = Date.now();
 
-    return new Response(JSON.stringify(fixtures), {
-      status: 200,
+    return {
+      statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'public, max-age=3600',
         'X-Cache-Status': 'MISS',
       },
-    });
+      body: JSON.stringify(fixtures),
+    };
   } catch (error) {
     console.error('Error in get-fixtures function:', error);
 
     // Return cached data as fallback if available
     if (cachedData) {
-      return new Response(JSON.stringify(cachedData), {
-        status: 200,
+      return {
+        statusCode: 200,
         headers: {
           'Content-Type': 'application/json',
           'Cache-Control': 'public, max-age=60',
           'X-Cache-Status': 'STALE',
           'X-Error': 'Using stale cache due to API error',
         },
-      });
+        body: JSON.stringify(cachedData),
+      };
     }
 
-    return new Response(
-      JSON.stringify({
+    return {
+      statusCode: 500,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         error: 'Failed to fetch fixtures data',
         message: error.message,
       }),
-      {
-        status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    };
   }
 };
