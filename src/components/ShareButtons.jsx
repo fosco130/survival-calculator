@@ -69,7 +69,7 @@ function ShareButtons({ team, percentage }) {
 
       <div className="share-info">
         <p className="share-text-preview">
-          "{teamName} have a {percentageStr}% chance of Premier League survival!"
+          "{team.name} have a {percentageStr}% chance of Premier League survival!"
         </p>
       </div>
     </div>
