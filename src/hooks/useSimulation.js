@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { runSurvivalSimulation, getTeamFixtures } from '../lib/simulation';
 
-export function useSimulation(team, standings, fixtures, scenarios = {}) {
+export function useSimulation(team, standings, fixtures, scenarios = null) {
   const [percentage, setPercentage] = useState(null);
   const [calculating, setCalculating] = useState(false);
 
@@ -15,7 +15,7 @@ export function useSimulation(team, standings, fixtures, scenarios = {}) {
     // Defer calculation to next tick to avoid blocking UI
     const timeoutId = setTimeout(() => {
       try {
-        const result = runSurvivalSimulation(team, standings, fixtures, scenarios);
+        const result = runSurvivalSimulation(team, standings, fixtures, scenarios || {});
         setPercentage(result);
       } catch (error) {
         console.error('Error running simulation:', error);
@@ -26,7 +26,7 @@ export function useSimulation(team, standings, fixtures, scenarios = {}) {
     }, 50);
 
     return () => clearTimeout(timeoutId);
-  }, [team, standings, fixtures, scenarios]);
+  }, [team, standings, fixtures]);
 
   // Recalculate when team, data, or scenarios change
   useEffect(() => {

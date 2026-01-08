@@ -280,12 +280,45 @@ FOOTBALL_DATA_API_KEY=your_real_api_key
 
 ## Testing
 
+### Automated Unit Tests
+
+Comprehensive unit tests for critical business logic using Vitest:
+
+```bash
+# Run tests in watch mode
+npm run test
+
+# Run tests once
+npm run test:run
+
+# Run with interactive UI
+npm run test:ui
+
+# Generate coverage report
+npm run test:coverage
+```
+
+**Test Coverage (Phase 1):**
+- **Statements:** 99.81% (target: 80%) ✅
+- **Functions:** 100% (target: 80%) ✅
+- **Branches:** 94.64% (target: 75%) ✅
+- **Lines:** 99.81% (target: 80%) ✅
+
+**Test Suites:**
+- ✅ `simulation.test.js` - Monte Carlo engine (31 tests)
+- ✅ `matchSimulation.test.js` - Match outcome probabilities (24 tests)
+- ✅ `teamStrength.test.js` - Strength calculation (29 tests)
+- ✅ `teams.test.js` - Team registry & utilities (27 tests)
+- ✅ `historicalThresholds.test.js` - Thresholds & color coding (41 tests)
+
+**Total: 152 passing tests with deterministic seeded random for Monte Carlo validation**
+
 ### Manual Testing
 
 ```bash
 # Development server with mock data
 npm run dev
-# Visit http://localhost:5174
+# Visit http://localhost:5173
 
 # Build verification
 npm run build
@@ -298,13 +331,12 @@ npm run preview
 
 ### Test Coverage
 
-- ✅ Component rendering
-- ✅ Data fetching (mock & API)
-- ✅ Simulation engine accuracy
-- ✅ Responsive design (mobile/tablet/desktop)
-- ✅ Error handling
-- ✅ SEO metadata
-- ✅ Performance benchmarks
+- ✅ Monte Carlo simulation accuracy & edge cases
+- ✅ Match probability distribution with home advantage
+- ✅ Team strength weighting (PPG + form)
+- ✅ Data utility functions & lookups
+- ✅ Historical thresholds & color mapping
+- ✅ Error handling & fallback behaviors
 
 See [PHASE1_TESTING.md](./PHASE1_TESTING.md) for full testing report.
 

@@ -27,8 +27,8 @@
 
 .team-badge-wrapper {
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 }
 
 .team-badge-image {
@@ -39,17 +39,17 @@
 }
 
 .team-badge {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border: 3px solid;
-  border-radius: 8px;
+  border-radius: 12px;
   display: none;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, rgba(255, 205, 0, 0.1), rgba(29, 66, 138, 0.1));
   color: #ffffff;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   letter-spacing: 0.05em;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
@@ -80,14 +80,19 @@
     gap: 0.75rem;
   }
 
+  .team-badge-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
   .team-badge {
-    width: 50px;
-    height: 50px;
-    font-size: 0.8rem;
+    width: 70px;
+    height: 70px;
+    font-size: 1rem;
   }
 
   .team-name {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -96,12 +101,13 @@
 .survival-card {
   background: linear-gradient(165deg, #1e2740 0%, #151b2d 100%);
   border: 1px solid #3d4a63;
-  border-left: 4px solid;
+  border-left: 8px solid;
+  border-top: 4px solid;
   border-radius: 16px;
   padding: 2rem;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+  box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.4), 0 4px 8px -2px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -116,6 +122,17 @@
   background: radial-gradient(circle at 20% 30%, var(--team-glow) 0%, transparent 50%);
   pointer-events: none;
   border-radius: 16px;
+}
+
+.survival-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--team-color, #fbbf24) 0%, transparent 100%);
+  border-radius: 16px 16px 0 0;
 }
 
 .survival-card:hover {
@@ -147,9 +164,9 @@
 }
 
 .percentage-number {
-  font-size: 5rem;
-  font-weight: 800;
-  line-height: 1.1;
+  font-size: 6rem;
+  font-weight: 900;
+  line-height: 1;
   letter-spacing: -0.02em;
   margin: 0;
   text-align: center;
@@ -212,11 +229,17 @@
 
 @media (max-width: 768px) {
   .percentage-number {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
   }
 
   .percentage-label {
     font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .percentage-number {
+    font-size: 3.5rem;
   }
 }
 

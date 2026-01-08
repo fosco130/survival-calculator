@@ -1,0 +1,174 @@
+/* ===== SHARE BUTTONS COMPONENT ===== */
+
+.share-buttons {
+  margin-top: 3rem;
+  animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.share-header {
+  margin-bottom: 1.5rem;
+}
+
+.share-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: 0.02em;
+}
+
+.share-subtitle {
+  font-size: 0.875rem;
+  color: #7a8ba3;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* ===== SHARE BUTTONS GROUP ===== */
+
+.share-buttons-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+/* Copy button */
+.share-btn.share-copy {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.share-btn.share-copy:hover {
+  background: rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+}
+
+.share-btn.share-copy:active {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+/* Twitter button */
+.share-btn.share-twitter {
+  border-color: #000000;
+  background: rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+
+.share-btn.share-twitter:hover {
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Facebook button */
+.share-btn.share-facebook {
+  border-color: #1877f2;
+  background: rgba(24, 119, 242, 0.1);
+  color: #1877f2;
+}
+
+.share-btn.share-facebook:hover {
+  background: rgba(24, 119, 242, 0.2);
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.3);
+}
+
+.share-icon {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.share-text {
+  letter-spacing: 0.02em;
+}
+
+/* ===== SHARE INFO ===== */
+
+.share-info {
+  background: linear-gradient(165deg, #1e2740 0%, #151b2d 100%);
+  border: 1px solid #3d4a63;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.share-text-preview {
+  font-size: 0.875rem;
+  color: #b8c5d6;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 768px) {
+  .share-buttons {
+    margin-top: 2rem;
+  }
+
+  .share-title {
+    font-size: 1.25rem;
+  }
+
+  .share-buttons-group {
+    gap: 0.6rem;
+  }
+
+  .share-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .share-icon {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .share-buttons-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .share-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .share-info {
+    padding: 0.875rem;
+  }
+
+  .share-text-preview {
+    font-size: 0.8rem;
+  }
+}

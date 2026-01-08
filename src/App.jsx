@@ -1,16 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useStandings } from './hooks/useStandings';
 import { useFixtures } from './hooks/useFixtures';
 import { useSimulation } from './hooks/useSimulation';
+import { useMultiTeamSimulation } from './hooks/useMultiTeamSimulation';
+import { useUrlTeam } from './hooks/useUrlTeam';
 import { getTeamBySlug } from './data/teams';
 import SurvivalDisplay from './components/SurvivalDisplay';
+import TeamSelector from './components/TeamSelector';
+import RivalsPanel from './components/RivalsPanel';
+import ScenarioBuilder from './components/ScenarioBuilder';
+import ShareButtons from './components/ShareButtons';
 import LoadingSkeleton from './components/LoadingSkeleton';
 import ErrorState from './components/ErrorState';
 import './App.css';
 
 function App() {
-  // Phase 1: Leeds United only
-  const team = getTeamBySlug('leeds');
+  // Scenario builder state
+  const [scenarios, setScenarios] = useState({});
+
+  // URL-based team selection (defaults to Leeds)
+  const [teamSlug, setTeamSlug] = useUrlTeam('leeds');
+  const team = getTeamBySlug(teamSlug);
 
   // Fetch data from Netlify Functions
   const { data: standingsData, loading: loadingStandings, error: standingsError } = useStandings();
@@ -20,8 +30,16 @@ function App() {
   const standings = standingsData?.teams || null;
   const fixtures = fixturesData?.fixtures || null;
 
-  // Run simulation
-  const { percentage, calculating } = useSimulation(team, standings, fixtures);
+  // Run simulation with scenarios
+  const { percentage, calculating } = useSimulation(team, standings, fixtures, scenarios);
+
+  // Reset scenarios when team changes
+  useEffect(() => {
+    setScenarios({});
+  }, [team?.id]);
+
+  // Run multi-team simulation for rivals panel
+  const { survivalPercentages } = useMultiTeamSimulation(standings, fixtures);
 
   // Get team standing
   const teamStanding = standings?.find((t) => t.id === team?.id) || null;
@@ -29,10 +47,13 @@ function App() {
   const isLoading = loadingStandings || loadingFixtures;
   const hasError = standingsError || fixturesError;
 
+
   useEffect(() => {
     // Update page title with team name
-    document.title = 'Premier League Survival Calculator - Relegation Odds | Leeds, That!';
-  }, []);
+    const teamName = team?.name || 'Premier League';
+    const percentageStr = percentage ? ` - ${Math.round(percentage * 10) / 10}%` : '';
+    document.title = `${teamName} Survival Odds${percentageStr} | Premier League Survival Calculator`;
+  }, [team, percentage]);
 
   return (
     <div className="app-bg">
@@ -49,6 +70,15 @@ function App() {
       {/* Main Content */}
       <main className="main-content">
         <div className="container-app py-8 md:py-12">
+          {/* Team Selector */}
+          {!isLoading && !hasError && standings && (
+            <TeamSelector
+              selectedTeamId={team?.id}
+              onTeamSelect={setTeamSlug}
+              standings={standings}
+            />
+          )}
+
           {isLoading && <LoadingSkeleton />}
 
           {hasError && (
@@ -64,6 +94,24 @@ function App() {
                 calculating={calculating}
                 standings={standings}
               />
+
+              {/* Scenario Builder - Test Fixtures */}
+              <ScenarioBuilder
+                team={team}
+                fixtures={fixtures}
+                percentage={percentage}
+                onScenariosChange={setScenarios}
+              />
+
+              {/* Rivals Panel - Relegation Battle */}
+              <RivalsPanel
+                currentTeamId={team.id}
+                standings={standings}
+                survivalPercentages={survivalPercentages}
+              />
+
+              {/* Share Buttons */}
+              <ShareButtons team={team} percentage={percentage} />
             </div>
           )}
 

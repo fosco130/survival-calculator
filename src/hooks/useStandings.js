@@ -36,7 +36,7 @@ export function useStandings() {
       } catch (err) {
         if (isMounted) {
           setError(err.message || 'Unknown error fetching standings');
-          console.error('Error fetching standings:', err);
+          console.error('❌ Error fetching standings:', err);
         }
       } finally {
         if (isMounted) {

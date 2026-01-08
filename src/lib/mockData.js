@@ -4,7 +4,8 @@
 export const mockStandings = [
   {
     position: 1,
-    team: { id: 65, name: 'Manchester City', shortName: 'MCI' },
+    id: 14,
+    team: { id: 14, name: 'Manchester City', shortName: 'MCI' },
     playedGames: 18,
     won: 14,
     draw: 2,
@@ -17,7 +18,8 @@ export const mockStandings = [
   },
   {
     position: 2,
-    team: { id: 64, name: 'Liverpool', shortName: 'LIV' },
+    id: 12,
+    team: { id: 12, name: 'Liverpool', shortName: 'LIV' },
     playedGames: 18,
     won: 13,
     draw: 3,
@@ -30,7 +32,8 @@ export const mockStandings = [
   },
   {
     position: 3,
-    team: { id: 73, name: 'Arsenal', shortName: 'ARS' },
+    id: 1,
+    team: { id: 1, name: 'Arsenal', shortName: 'ARS' },
     playedGames: 18,
     won: 12,
     draw: 2,
@@ -43,7 +46,8 @@ export const mockStandings = [
   },
   {
     position: 4,
-    team: { id: 62, name: 'Chelsea', shortName: 'CHE' },
+    id: 6,
+    team: { id: 6, name: 'Chelsea', shortName: 'CHE' },
     playedGames: 18,
     won: 10,
     draw: 2,
@@ -56,7 +60,8 @@ export const mockStandings = [
   },
   {
     position: 5,
-    team: { id: 71, name: 'Brighton & Hove Albion', shortName: 'BHA' },
+    id: 5,
+    team: { id: 5, name: 'Brighton & Hove Albion', shortName: 'BHA' },
     playedGames: 18,
     won: 9,
     draw: 4,
@@ -69,7 +74,8 @@ export const mockStandings = [
   },
   {
     position: 6,
-    team: { id: 76, name: 'Tottenham Hotspur', shortName: 'TOT' },
+    id: 19,
+    team: { id: 19, name: 'Tottenham Hotspur', shortName: 'TOT' },
     playedGames: 18,
     won: 9,
     draw: 2,
@@ -82,7 +88,8 @@ export const mockStandings = [
   },
   {
     position: 7,
-    team: { id: 57, name: 'Aston Villa', shortName: 'AVL' },
+    id: 2,
+    team: { id: 2, name: 'Aston Villa', shortName: 'AVL' },
     playedGames: 18,
     won: 8,
     draw: 4,
@@ -95,7 +102,8 @@ export const mockStandings = [
   },
   {
     position: 8,
-    team: { id: 72, name: 'Manchester United', shortName: 'MUN' },
+    id: 15,
+    team: { id: 15, name: 'Manchester United', shortName: 'MUN' },
     playedGames: 18,
     won: 8,
     draw: 3,
@@ -108,7 +116,8 @@ export const mockStandings = [
   },
   {
     position: 9,
-    team: { id: 61, name: 'Newcastle United', shortName: 'NEW' },
+    id: 16,
+    team: { id: 16, name: 'Newcastle United', shortName: 'NEW' },
     playedGames: 18,
     won: 8,
     draw: 1,
@@ -121,7 +130,8 @@ export const mockStandings = [
   },
   {
     position: 10,
-    team: { id: 63, name: 'Brentford', shortName: 'BRE' },
+    id: 4,
+    team: { id: 4, name: 'Brentford', shortName: 'BRE' },
     playedGames: 18,
     won: 7,
     draw: 3,
@@ -134,7 +144,8 @@ export const mockStandings = [
   },
   {
     position: 11,
-    team: { id: 74, name: 'Fulham', shortName: 'FUL' },
+    id: 9,
+    team: { id: 9, name: 'Fulham', shortName: 'FUL' },
     playedGames: 18,
     won: 6,
     draw: 4,
@@ -147,7 +158,8 @@ export const mockStandings = [
   },
   {
     position: 12,
-    team: { id: 354, name: 'Crystal Palace', shortName: 'CRY' },
+    id: 7,
+    team: { id: 7, name: 'Crystal Palace', shortName: 'CRY' },
     playedGames: 18,
     won: 6,
     draw: 2,
@@ -160,7 +172,8 @@ export const mockStandings = [
   },
   {
     position: 13,
-    team: { id: 346, name: 'Wolverhampton Wanderers', shortName: 'WOL' },
+    id: 11,
+    team: { id: 11, name: 'Leicester City', shortName: 'LEI' },
     playedGames: 18,
     won: 5,
     draw: 4,
@@ -173,7 +186,8 @@ export const mockStandings = [
   },
   {
     position: 14,
-    team: { id: 67, name: 'West Ham United', shortName: 'WHU' },
+    id: 20,
+    team: { id: 20, name: 'West Ham United', shortName: 'WHU' },
     playedGames: 18,
     won: 5,
     draw: 2,
@@ -186,7 +200,8 @@ export const mockStandings = [
   },
   {
     position: 15,
-    team: { id: 70, name: 'Everton', shortName: 'EVE' },
+    id: 8,
+    team: { id: 8, name: 'Everton', shortName: 'EVE' },
     playedGames: 18,
     won: 4,
     draw: 4,
@@ -199,7 +214,8 @@ export const mockStandings = [
   },
   {
     position: 16,
-    team: { id: 397, name: 'Leeds United', shortName: 'LEE' },
+    id: 13,
+    team: { id: 13, name: 'Leeds United', shortName: 'LEE' },
     playedGames: 18,
     won: 4,
     draw: 3,
@@ -212,7 +228,8 @@ export const mockStandings = [
   },
   {
     position: 17,
-    team: { id: 66, name: 'Ipswich Town', shortName: 'IPS' },
+    id: 10,
+    team: { id: 10, name: 'Ipswich Town', shortName: 'IPS' },
     playedGames: 18,
     won: 4,
     draw: 2,
@@ -225,7 +242,8 @@ export const mockStandings = [
   },
   {
     position: 18,
-    team: { id: 349, name: 'Nottingham Forest', shortName: 'NFO' },
+    id: 17,
+    team: { id: 17, name: 'Nottingham Forest', shortName: 'NFO' },
     playedGames: 18,
     won: 3,
     draw: 3,
@@ -238,7 +256,8 @@ export const mockStandings = [
   },
   {
     position: 19,
-    team: { id: 340, name: 'Southampton', shortName: 'SOU' },
+    id: 18,
+    team: { id: 18, name: 'Southampton', shortName: 'SOU' },
     playedGames: 18,
     won: 2,
     draw: 2,
@@ -251,7 +270,8 @@ export const mockStandings = [
   },
   {
     position: 20,
-    team: { id: 35, name: 'AFC Bournemouth', shortName: 'BOU' },
+    id: 3,
+    team: { id: 3, name: 'AFC Bournemouth', shortName: 'BOU' },
     playedGames: 18,
     won: 1,
     draw: 2,
@@ -265,16 +285,16 @@ export const mockStandings = [
 ];
 
 export const mockFixtures = [
-  { homeTeam: { id: 65, name: 'Manchester City' }, awayTeam: { id: 64, name: 'Liverpool' }, date: '2026-01-15' },
-  { homeTeam: { id: 73, name: 'Arsenal' }, awayTeam: { id: 62, name: 'Chelsea' }, date: '2026-01-15' },
-  { homeTeam: { id: 71, name: 'Brighton' }, awayTeam: { id: 76, name: 'Tottenham' }, date: '2026-01-16' },
-  { homeTeam: { id: 397, name: 'Leeds United' }, awayTeam: { id: 57, name: 'Aston Villa' }, date: '2026-01-18' },
-  { homeTeam: { id: 72, name: 'Manchester United' }, awayTeam: { id: 61, name: 'Newcastle' }, date: '2026-01-18' },
-  { homeTeam: { id: 63, name: 'Brentford' }, awayTeam: { id: 74, name: 'Fulham' }, date: '2026-01-19' },
-  { homeTeam: { id: 354, name: 'Crystal Palace' }, awayTeam: { id: 346, name: 'Wolverhampton' }, date: '2026-01-20' },
-  { homeTeam: { id: 67, name: 'West Ham' }, awayTeam: { id: 70, name: 'Everton' }, date: '2026-01-20' },
-  { homeTeam: { id: 66, name: 'Ipswich Town' }, awayTeam: { id: 349, name: 'Nottingham Forest' }, date: '2026-01-21' },
-  { homeTeam: { id: 340, name: 'Southampton' }, awayTeam: { id: 35, name: 'AFC Bournemouth' }, date: '2026-01-21' },
+  { homeTeam: { id: 14, name: 'Manchester City' }, awayTeam: { id: 12, name: 'Liverpool' }, status: 'SCHEDULED', date: '2026-01-15' },
+  { homeTeam: { id: 1, name: 'Arsenal' }, awayTeam: { id: 6, name: 'Chelsea' }, status: 'SCHEDULED', date: '2026-01-15' },
+  { homeTeam: { id: 5, name: 'Brighton' }, awayTeam: { id: 19, name: 'Tottenham' }, status: 'SCHEDULED', date: '2026-01-16' },
+  { homeTeam: { id: 13, name: 'Leeds United' }, awayTeam: { id: 2, name: 'Aston Villa' }, status: 'SCHEDULED', date: '2026-01-18' },
+  { homeTeam: { id: 15, name: 'Manchester United' }, awayTeam: { id: 16, name: 'Newcastle' }, status: 'SCHEDULED', date: '2026-01-18' },
+  { homeTeam: { id: 4, name: 'Brentford' }, awayTeam: { id: 9, name: 'Fulham' }, status: 'SCHEDULED', date: '2026-01-19' },
+  { homeTeam: { id: 7, name: 'Crystal Palace' }, awayTeam: { id: 11, name: 'Leicester City' }, status: 'SCHEDULED', date: '2026-01-20' },
+  { homeTeam: { id: 20, name: 'West Ham' }, awayTeam: { id: 8, name: 'Everton' }, status: 'SCHEDULED', date: '2026-01-20' },
+  { homeTeam: { id: 10, name: 'Ipswich Town' }, awayTeam: { id: 17, name: 'Nottingham Forest' }, status: 'SCHEDULED', date: '2026-01-21' },
+  { homeTeam: { id: 18, name: 'Southampton' }, awayTeam: { id: 3, name: 'AFC Bournemouth' }, status: 'SCHEDULED', date: '2026-01-21' },
   // More fixtures would continue...
 ];
 
@@ -283,7 +303,7 @@ export const useMockData = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 export async function getMockStandings() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(mockStandings);
+      resolve({ teams: mockStandings });
     }, 300); // Simulate network delay
   });
 }
@@ -291,7 +311,7 @@ export async function getMockStandings() {
 export async function getMockFixtures() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(mockFixtures);
+      resolve({ fixtures: mockFixtures });
     }, 300); // Simulate network delay
   });
 }

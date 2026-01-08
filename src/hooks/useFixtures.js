@@ -36,7 +36,7 @@ export function useFixtures() {
       } catch (err) {
         if (isMounted) {
           setError(err.message || 'Unknown error fetching fixtures');
-          console.error('Error fetching fixtures:', err);
+          console.error('❌ Error fetching fixtures:', err);
         }
       } finally {
         if (isMounted) {
