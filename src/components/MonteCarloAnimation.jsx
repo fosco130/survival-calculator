@@ -44,10 +44,13 @@ function MonteCarloAnimation({ progress }) {
   }, []);
 
   // Calculate what percentage of particles to show based on progress
+  // Ensure at least 10 particles are visible when calculating starts
   const visibleCount = useMemo(() => {
     if (!progress || progress.total === 0) return 0;
     const percentage = (progress.current / progress.total);
-    return Math.floor(particles.length * percentage);
+    const count = Math.floor(particles.length * percentage);
+    // Show at least 10 particles even at the start
+    return Math.max(10, count);
   }, [progress, particles.length]);
 
   return (
