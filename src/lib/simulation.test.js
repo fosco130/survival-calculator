@@ -37,37 +37,37 @@ describe('Monte Carlo Simulation Engine', () => {
       targetTeam = { id: 66, name: 'Ipswich Town' };
     });
 
-    it('should return a percentage between 0 and 100', () => {
-      const result = runSurvivalSimulation(targetTeam, standings, fixtures);
+    it('should return a percentage between 0 and 100', async () => {
+      const result = await runSurvivalSimulation(targetTeam, standings, fixtures);
       expect(result).toBeWithinRange(0, 100);
     });
 
-    it('should return a number with max 1 decimal place', () => {
-      const result = runSurvivalSimulation(targetTeam, standings, fixtures);
+    it('should return a number with max 1 decimal place', async () => {
+      const result = await runSurvivalSimulation(targetTeam, standings, fixtures);
       const decimalPlaces = (result.toString().split('.')[1] || []).length;
       expect(decimalPlaces).toBeLessThanOrEqual(1);
     });
 
-    it('should return 100 when team is already safe (position <= 17)', () => {
+    it('should return 100 when team is already safe (position <= 17)', async () => {
       // Arsenal is 1st place with 45 points
       const safeTeam = { id: 1, name: 'Arsenal' };
-      const result = runSurvivalSimulation(safeTeam, standings, []);
+      const result = await runSurvivalSimulation(safeTeam, standings, []);
       expect(result).toBe(100);
     });
 
-    it('should return 0 when team is already relegated (position > 17) with no fixtures', () => {
+    it('should return 0 when team is already relegated (position > 17) with no fixtures', async () => {
       // With only 5 teams, all are in safe positions (<=5)
       // So this test should actually expect > 0
       // Skip this edge case as it's not realistic for PL (20 teams)
       const limitedStandings = standings.slice(0, 5); // Only use 5 teams
-      const result = runSurvivalSimulation(limitedStandings[1], limitedStandings, []);
+      const result = await runSurvivalSimulation(limitedStandings[1], limitedStandings, []);
       // With 5 teams, position 2 is not relegated, so survival should be 100
       expect(result).toBe(100);
     });
 
-    it('should handle no remaining fixtures gracefully', () => {
+    it('should handle no remaining fixtures gracefully', async () => {
       // Empty fixtures array - season is finished
-      const result = runSurvivalSimulation(targetTeam, standings, []);
+      const result = await runSurvivalSimulation(targetTeam, standings, []);
       expect(result).toBeWithinRange(0, 100);
     });
 
@@ -96,7 +96,7 @@ describe('Monte Carlo Simulation Engine', () => {
       expect(result).toBe(0);
     });
 
-    it('should filter only SCHEDULED fixtures', () => {
+    it('should filter only SCHEDULED fixtures', async () => {
       // Add a COMPLETED fixture - should be ignored
       const mixedFixtures = [
         ...fixtures,
@@ -109,13 +109,13 @@ describe('Monte Carlo Simulation Engine', () => {
         }
       ];
 
-      const result = runSurvivalSimulation(targetTeam, standings, mixedFixtures);
+      const result = await runSurvivalSimulation(targetTeam, standings, mixedFixtures);
       expect(result).toBeWithinRange(0, 100);
       // Should process without error
       expect(result).toBeDefined();
     });
 
-    it('should handle fixtures with missing teams gracefully', () => {
+    it('should handle fixtures with missing teams gracefully', async () => {
       // Add a fixture with non-existent team ID
       const brokenFixtures = [
         ...fixtures,
@@ -128,14 +128,14 @@ describe('Monte Carlo Simulation Engine', () => {
         }
       ];
 
-      const result = runSurvivalSimulation(targetTeam, standings, brokenFixtures);
+      const result = await runSurvivalSimulation(targetTeam, standings, brokenFixtures);
       expect(result).toBeWithinRange(0, 100);
       expect(result).toBeDefined();
     });
 
-    it('should complete simulation within reasonable time (<5 seconds)', () => {
+    it('should complete simulation within reasonable time (<5 seconds)', async () => {
       const startTime = performance.now();
-      const result = runSurvivalSimulation(targetTeam, standings, fixtures);
+      const result = await runSurvivalSimulation(targetTeam, standings, fixtures);
       const endTime = performance.now();
 
       const duration = endTime - startTime;
@@ -143,31 +143,31 @@ describe('Monte Carlo Simulation Engine', () => {
       expect(result).toBeWithinRange(0, 100);
     });
 
-    it('should handle scenario overrides (for future Phase 2)', () => {
+    it('should handle scenario overrides (for future Phase 2)', async () => {
       // Test that scenarios parameter is accepted (used in Phase 2)
       const scenarios = {
         '1': 'home' // Team 1 wins first fixture
       };
 
-      const result = runSurvivalSimulation(targetTeam, standings, fixtures, scenarios);
+      const result = await runSurvivalSimulation(targetTeam, standings, fixtures, scenarios);
       expect(result).toBeWithinRange(0, 100);
     });
 
-    it('should produce lower survival percentage for relegated teams than safe teams', () => {
+    it('should produce lower survival percentage for relegated teams than safe teams', async () => {
       // Get survival chance for team in relegation zone
       const relegatedTeam = { id: 340, name: 'Southampton' }; // 19th place
-      const relegatedResult = runSurvivalSimulation(relegatedTeam, standings, fixtures);
+      const relegatedResult = await runSurvivalSimulation(relegatedTeam, standings, fixtures);
 
       // Get survival chance for safe team
       const safeTeam = { id: 1, name: 'Arsenal' }; // 1st place
-      const safeResult = runSurvivalSimulation(safeTeam, standings, fixtures);
+      const safeResult = await runSurvivalSimulation(safeTeam, standings, fixtures);
 
       // Both might be 100 if they have no remaining fixtures, so just verify both are valid
       expect(safeResult).toBeWithinRange(0, 100);
       expect(relegatedResult).toBeWithinRange(0, 100);
     });
 
-    it('should handle teams with multiple fixtures in remaining season', () => {
+    it('should handle teams with multiple fixtures in remaining season', async () => {
       // Expand fixtures to multiple rounds
       const expandedFixtures = [
         ...fixtures,
@@ -187,7 +187,7 @@ describe('Monte Carlo Simulation Engine', () => {
         }
       ];
 
-      const result = runSurvivalSimulation(targetTeam, standings, expandedFixtures);
+      const result = await runSurvivalSimulation(targetTeam, standings, expandedFixtures);
       expect(result).toBeWithinRange(0, 100);
     });
   });
