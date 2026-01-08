@@ -1,8 +1,9 @@
 // Team data: slugs, colors, IDs, and display info
+// IDs are from football-data.org API (https://www.football-data.org/)
 
 export const teams = [
   {
-    id: 1,
+    id: 57,
     slug: 'arsenal',
     name: 'Arsenal',
     shortName: 'ARS',
@@ -12,7 +13,7 @@ export const teams = [
     },
   },
   {
-    id: 2,
+    id: 58,
     slug: 'aston-villa',
     name: 'Aston Villa',
     shortName: 'AVL',
@@ -22,7 +23,7 @@ export const teams = [
     },
   },
   {
-    id: 3,
+    id: 1044,
     slug: 'bournemouth',
     name: 'AFC Bournemouth',
     shortName: 'BOU',
@@ -32,7 +33,7 @@ export const teams = [
     },
   },
   {
-    id: 4,
+    id: 402,
     slug: 'brentford',
     name: 'Brentford',
     shortName: 'BRE',
@@ -42,7 +43,7 @@ export const teams = [
     },
   },
   {
-    id: 5,
+    id: 397,
     slug: 'brighton',
     name: 'Brighton & Hove Albion',
     shortName: 'BHA',
@@ -52,7 +53,7 @@ export const teams = [
     },
   },
   {
-    id: 6,
+    id: 61,
     slug: 'chelsea',
     name: 'Chelsea',
     shortName: 'CHE',
@@ -62,7 +63,7 @@ export const teams = [
     },
   },
   {
-    id: 7,
+    id: 354,
     slug: 'crystal-palace',
     name: 'Crystal Palace',
     shortName: 'CRY',
@@ -72,7 +73,7 @@ export const teams = [
     },
   },
   {
-    id: 8,
+    id: 62,
     slug: 'everton',
     name: 'Everton',
     shortName: 'EVE',
@@ -82,7 +83,7 @@ export const teams = [
     },
   },
   {
-    id: 9,
+    id: 63,
     slug: 'fulham',
     name: 'Fulham',
     shortName: 'FUL',
@@ -92,27 +93,17 @@ export const teams = [
     },
   },
   {
-    id: 10,
-    slug: 'ipswich',
-    name: 'Ipswich Town',
-    shortName: 'IPS',
+    id: 71,
+    slug: 'sunderland',
+    name: 'Sunderland',
+    shortName: 'SUN',
     colors: {
-      primary: '#3A64A3',
+      primary: '#EB6E1F',
       secondary: '#FFFFFF',
     },
   },
   {
-    id: 11,
-    slug: 'leicester',
-    name: 'Leicester City',
-    shortName: 'LEI',
-    colors: {
-      primary: '#003090',
-      secondary: '#FDBE11',
-    },
-  },
-  {
-    id: 12,
+    id: 64,
     slug: 'liverpool',
     name: 'Liverpool',
     shortName: 'LIV',
@@ -122,7 +113,7 @@ export const teams = [
     },
   },
   {
-    id: 13,
+    id: 341,
     slug: 'leeds',
     name: 'Leeds United',
     shortName: 'LEE',
@@ -132,7 +123,7 @@ export const teams = [
     },
   },
   {
-    id: 14,
+    id: 65,
     slug: 'man-city',
     name: 'Manchester City',
     shortName: 'MCI',
@@ -142,7 +133,7 @@ export const teams = [
     },
   },
   {
-    id: 15,
+    id: 66,
     slug: 'man-utd',
     name: 'Manchester United',
     shortName: 'MUN',
@@ -152,7 +143,7 @@ export const teams = [
     },
   },
   {
-    id: 16,
+    id: 67,
     slug: 'newcastle',
     name: 'Newcastle United',
     shortName: 'NEW',
@@ -162,7 +153,7 @@ export const teams = [
     },
   },
   {
-    id: 17,
+    id: 351,
     slug: 'nottm-forest',
     name: 'Nottingham Forest',
     shortName: 'NFO',
@@ -172,17 +163,27 @@ export const teams = [
     },
   },
   {
-    id: 18,
-    slug: 'southampton',
-    name: 'Southampton',
-    shortName: 'SOU',
+    id: 563,
+    slug: 'west-ham',
+    name: 'West Ham United',
+    shortName: 'WHU',
     colors: {
-      primary: '#D71920',
-      secondary: '#FFFFFF',
+      primary: '#7A263A',
+      secondary: '#1BB1E7',
     },
   },
   {
-    id: 19,
+    id: 328,
+    slug: 'burnley',
+    name: 'Burnley',
+    shortName: 'BUR',
+    colors: {
+      primary: '#6C1D45',
+      secondary: '#87CEEB',
+    },
+  },
+  {
+    id: 73,
     slug: 'tottenham',
     name: 'Tottenham Hotspur',
     shortName: 'TOT',
@@ -192,13 +193,13 @@ export const teams = [
     },
   },
   {
-    id: 20,
-    slug: 'west-ham',
-    name: 'West Ham United',
-    shortName: 'WHU',
+    id: 76,
+    slug: 'wolverhampton',
+    name: 'Wolverhampton Wanderers',
+    shortName: 'WOL',
     colors: {
-      primary: '#7A263A',
-      secondary: '#1BB1E7',
+      primary: '#FDB913',
+      secondary: '#000000',
     },
   },
 ];

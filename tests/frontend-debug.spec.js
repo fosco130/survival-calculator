@@ -9,9 +9,10 @@ test('diagnose survival calculator rendering', async ({ page }) => {
     consoleLogs.push(`[${msg.type()}] ${msg.text()}`);
   });
 
-  // Navigate to app
-  console.log('📱 Navigating to http://localhost:5173/...');
-  await page.goto('http://localhost:5173/');
+  // Navigate to app with Leeds team URL parameter
+  const url = 'https://loquacious-heliotrope-263b7c.netlify.app/?team=leeds';
+  console.log(`📱 Navigating to ${url}...`);
+  await page.goto(url);
 
   // Wait for the percentage number to appear AND be stable (calculating = false)
   console.log('⏳ Waiting for calculation to complete...');
