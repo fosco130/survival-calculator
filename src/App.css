@@ -1,0 +1,171 @@
+/* ===== APP LAYOUT ===== */
+
+.app-bg {
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #0a0e1a 0%,
+    #0f1220 50%,
+    #0a0e1a 100%
+  );
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+
+.header {
+  background: linear-gradient(
+    180deg,
+    rgba(10, 14, 26, 0.95) 0%,
+    rgba(21, 27, 45, 0.7) 100%
+  );
+  border-bottom: 2px solid #3d4a63;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 205, 0, 0.3),
+    transparent
+  );
+}
+
+.header-content {
+  text-align: center;
+}
+
+.header-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.header-tagline {
+  font-size: 1rem;
+  color: #b8c5d6;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 1.75rem;
+  }
+
+  .header-tagline {
+    font-size: 0.875rem;
+  }
+}
+
+/* ===== MAIN CONTENT ===== */
+
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+.content-wrapper {
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== FOOTER ===== */
+
+.footer {
+  border-top: 2px solid #3d4a63;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 18, 32, 0.5) 0%,
+    rgba(10, 14, 26, 0.8) 100%
+  );
+  margin-top: 3rem;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 205, 0, 0.2),
+    transparent
+  );
+}
+
+.footer-content {
+  text-align: center;
+}
+
+.footer-branding {
+  margin-bottom: 1rem;
+}
+
+.footer-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.03em;
+}
+
+.footer-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.footer-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  color: #7a8ba3;
+  margin: 1rem 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .footer-link {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+  }
+}

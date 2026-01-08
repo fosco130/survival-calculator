@@ -1,0 +1,377 @@
+/* ===== SURVIVAL DISPLAY COMPONENT ===== */
+
+.survival-display {
+  animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== TEAM HEADER ===== */
+
+.team-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.team-badge-wrapper {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.team-badge-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.team-badge {
+  width: 60px;
+  height: 60px;
+  border: 3px solid;
+  border-radius: 8px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 205, 0, 0.1), rgba(29, 66, 138, 0.1));
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.team-badge.fallback {
+  display: flex;
+}
+
+.team-badge:hover {
+  transform: scale(1.05);
+}
+
+.team-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  .team-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .team-badge {
+    width: 50px;
+    height: 50px;
+    font-size: 0.8rem;
+  }
+
+  .team-name {
+    font-size: 1.25rem;
+  }
+}
+
+/* ===== SURVIVAL CARD ===== */
+
+.survival-card {
+  background: linear-gradient(165deg, #1e2740 0%, #151b2d 100%);
+  border: 1px solid #3d4a63;
+  border-left: 4px solid;
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.survival-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 30%, var(--team-glow) 0%, transparent 50%);
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+.survival-card:hover {
+  border-color: #4f5d78;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Color variants */
+
+.survival-card-safe {
+  border-left-color: #22c55e;
+}
+
+.survival-card-nervous {
+  border-left-color: #fbbf24;
+}
+
+.survival-card-danger {
+  border-left-color: #ef4444;
+}
+
+/* ===== PERCENTAGE SECTION ===== */
+
+.percentage-section {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.percentage-number {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-align: center;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: #ffffff; /* Fallback */
+}
+
+.percentage-number.animated {
+  animation: countUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes countUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Color-coded percentage */
+
+.percentage-number.safe {
+  background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+  filter: drop-shadow(0 4px 12px rgba(34, 197, 94, 0.3));
+}
+
+.percentage-number.nervous {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  filter: drop-shadow(0 4px 12px rgba(251, 191, 36, 0.3));
+}
+
+.percentage-number.danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  filter: drop-shadow(0 4px 12px rgba(239, 68, 68, 0.3));
+}
+
+.percentage-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #b8c5d6;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 1rem 0 0 0;
+  text-align: center;
+}
+
+.percentage-skeleton {
+  height: 80px;
+  background: linear-gradient(90deg, #252e47 25%, #2a3548 50%, #252e47 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: shimmer 1.5s infinite;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .percentage-number {
+    font-size: 3.5rem;
+  }
+
+  .percentage-label {
+    font-size: 0.875rem;
+  }
+}
+
+/* ===== PROGRESS SECTION ===== */
+
+.progress-section {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.progress-skeleton {
+  height: 16px;
+  background: linear-gradient(90deg, #252e47 25%, #2a3548 50%, #252e47 75%);
+  background-size: 200% 100%;
+  border-radius: 9999px;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ===== CONTEXT STATS ===== */
+
+.context-stats {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #7a8ba3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+}
+
+.stat-divider {
+  color: #3d4a63;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .context-stats {
+    gap: 0.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===== THRESHOLD INFO ===== */
+
+.threshold-info {
+  background: rgba(255, 205, 0, 0.05);
+  border: 1px solid rgba(255, 205, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.threshold-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #7a8ba3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem 0;
+}
+
+.threshold-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fcd34d;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+}
+
+/* ===== CALCULATING INDICATOR ===== */
+
+.calculating-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(10, 14, 26, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.calculating-indicator span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #b8c5d6;
+}
+
+/* ===== SHIMMER ANIMATION ===== */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 640px) {
+  .survival-card {
+    padding: 1.5rem;
+  }
+
+  .percentage-number {
+    font-size: 3rem;
+  }
+}
