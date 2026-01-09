@@ -9,10 +9,34 @@ function TeamSelector({ selectedTeamId, onTeamSelect, standings }) {
     onTeamSelect(teamSlug);
   };
 
+  // Sort teams: selected first, then by position
+  const sortedTeams = [...allTeams].sort((a, b) => {
+    // Selected team always first
+    if (a.id === selectedTeamId) return -1;
+    if (b.id === selectedTeamId) return 1;
+
+    // Then sort by league position
+    const aStanding = standings?.find((s) => s.id === a.id);
+    const bStanding = standings?.find((s) => s.id === b.id);
+
+    if (aStanding && bStanding) {
+      return aStanding.position - bStanding.position;
+    }
+
+    return 0;
+  });
+
   return (
     <div className="team-selector-wrapper">
+      <div className="selector-header">
+        <h2 className="selector-title">Select a Team</h2>
+        <p className="selector-instructions">
+          Choose any Premier League team to calculate their survival odds
+        </p>
+      </div>
+
       <div className="team-selector">
-        {allTeams.map((team) => {
+        {sortedTeams.map((team) => {
           // Find team standing if available
           const teamStanding = standings?.find((s) => s.id === team.id);
           const survivalColor = teamStanding

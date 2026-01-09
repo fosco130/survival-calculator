@@ -5,9 +5,6 @@ import ProgressBar from './ProgressBar';
 import MonteCarloAnimation from './MonteCarloAnimation';
 import './SurvivalDisplay.css';
 
-// Import badge SVGs for all teams
-const badges = import.meta.glob('../assets/badges/*.svg', { eager: true });
-
 function SurvivalDisplay({ team, teamStanding, percentage, calculating, standings, progress = { current: 0, total: 0 } }) {
   const [displayPercentage, setDisplayPercentage] = useState(null);
   const [prevPercentage, setPrevPercentage] = useState(null);
@@ -43,30 +40,30 @@ function SurvivalDisplay({ team, teamStanding, percentage, calculating, standing
   // Calculate points needed for safety
   const pointsNeeded = Math.max(0, threshold.points - teamStanding.points);
 
-  // Get badge SVG path
-  const badgePath = `../assets/badges/${team.slug}.svg`;
-  const badgeModule = badges[badgePath];
-  const badgeUrl = badgeModule?.default;
+  // Use API crest from teamStanding (same as TeamSelector)
+  const crestUrl = teamStanding?.crest || null;
 
   return (
     <div className="survival-display">
       {/* Team Header */}
       <div className="team-header">
         <div className="team-badge-wrapper">
-          <img
-            src={badgeUrl}
-            alt={`${team.name} badge`}
-            className="team-badge-image"
-            onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.nextElementSibling.style.display = 'flex';
-            }}
-          />
+          {crestUrl ? (
+            <img
+              src={crestUrl}
+              alt={`${team.name} badge`}
+              className="team-badge-image"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'flex';
+              }}
+            />
+          ) : null}
           <div
             className="team-badge"
             style={{
+              display: crestUrl ? 'none' : 'flex',
               borderColor: team.colors.primary,
-              boxShadow: `0 0 20px rgba(${hexToRgb(team.colors.primary).join(',')}, 0.3)`,
             }}
           >
             {team.shortName}
