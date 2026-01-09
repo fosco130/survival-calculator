@@ -24,17 +24,13 @@
   width: 100%;
   aspect-ratio: 1;
   padding: 0;
-  border: 3px solid var(--team-color, #ccc);
+  border: 2px solid #D1D5DB;
   border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
+  background: #FFFFFF;
   cursor: pointer;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #fff;
+  color: #1A1A1A;
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -43,47 +39,47 @@
   gap: 0.25rem;
 
   &:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(var(--team-color-rgb, 255, 255, 255), 0.4),
-      0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: #9CA3AF;
   }
 
   &.selected {
-    box-shadow: 0 0 30px rgba(var(--team-color-rgb, 255, 255, 255), 0.6),
-      inset 0 0 20px rgba(var(--team-color-rgb, 255, 255, 255), 0.1);
-    background: linear-gradient(
-      135deg,
-      rgba(var(--team-color-rgb, 255, 255, 255), 0.15) 0%,
-      rgba(var(--team-color-rgb, 255, 255, 255), 0.05) 100%
-    );
+    border-color: #2563EB;
+    border-width: 3px;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background: #FFFFFF;
   }
 
   /* Color-coded borders based on survival status */
   &.safe {
-    border-color: #22c55e;
+    border-bottom-color: #16A34A;
+    border-bottom-width: 3px;
   }
 
   &.nervous {
-    border-color: #fbbf24;
+    border-bottom-color: #EA580C;
+    border-bottom-width: 3px;
   }
 
   &.danger {
-    border-color: #ef4444;
+    border-bottom-color: #DC2626;
+    border-bottom-width: 3px;
   }
 
   &.selected.safe {
-    box-shadow: 0 0 30px rgba(34, 197, 94, 0.6),
-      inset 0 0 20px rgba(34, 197, 94, 0.1);
+    border-color: #16A34A;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
   }
 
   &.selected.nervous {
-    box-shadow: 0 0 30px rgba(251, 191, 36, 0.6),
-      inset 0 0 20px rgba(251, 191, 36, 0.1);
+    border-color: #EA580C;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
   }
 
   &.selected.danger {
-    box-shadow: 0 0 30px rgba(239, 68, 68, 0.6),
-      inset 0 0 20px rgba(239, 68, 68, 0.1);
+    border-color: #DC2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
   }
 }
 
@@ -112,16 +108,16 @@
   font-size: 0.625rem;
   font-weight: 900;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  color: #1A1A1A;
 }
 
 .badge-position {
   font-size: 0.5rem;
-  background: rgba(0, 0, 0, 0.3);
+  background: #F3F4F6;
   padding: 1px 4px;
   border-radius: 2px;
   font-weight: 700;
-  color: #fff;
+  color: #1A1A1A;
   min-width: 18px;
   text-align: center;
 }
@@ -131,8 +127,8 @@
   bottom: -28px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.9);
-  color: #fff;
+  background: #1A1A1A;
+  color: #FFFFFF;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 0.65rem;

@@ -65,8 +65,8 @@ function App() {
       <header className="header">
         <div className="container-app py-8 md:py-12">
           <div className="header-content">
-            <h1 className="header-title">WHO'S GETTING RELEGATED?</h1>
-            <p className="header-tagline">The drop is coming. Is it for you?</p>
+            <h1 className="header-title">Relegation Calculator</h1>
+            <p className="header-tagline">Calculate any team's chances of survival</p>
             <button
               className="methodology-button"
               onClick={() => setIsMethodologyOpen(true)}

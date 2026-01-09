@@ -5,25 +5,30 @@
 @tailwind utilities;
 
 :root {
-  /* Background colors */
-  --bg-primary: #0A0E1A;
-  --bg-secondary: #151B2D;
-  --bg-tertiary: #1E2740;
-  --bg-elevated: #252E47;
-  --bg-rage: #1a0000;
+  /* Background colors - LIGHT THEME */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F5;
+  --bg-tertiary: #FAFAFA;
+  --bg-section: #F9FAFB;
+  --bg-elevated: #FFFFFF;
+  --bg-rage: #FEE2E2;
 
-  /* Text colors */
-  --text-primary: #FFFFFF;
-  --text-secondary: #B8C5D6;
-  --text-tertiary: #7A8BA3;
+  /* Text colors - LIGHT THEME */
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
 
-  /* Status colors - INTENSIFIED */
-  --color-safe: #10EF5E;
+  /* Border colors */
+  --border-light: #E5E7EB;
+  --border-medium: #D1D5DB;
+
+  /* Status colors - MUTED & PROFESSIONAL */
+  --color-safe: #16A34A;
   --color-safe-dim: #22C55E;
-  --color-nervous: #FBBF24;
-  --color-danger: #FF2525;
+  --color-nervous: #EA580C;
+  --color-danger: #DC2626;
   --color-danger-dim: #EF4444;
-  --color-electric: #00F0FF;
+  --color-electric: #2563EB;
 
   /* Typography */
   --font-display: 'Bebas Neue', 'Inter', sans-serif;
@@ -63,15 +68,15 @@
   }
 
   .gradient-safe {
-    background: linear-gradient(135deg, #10EF5E 0%, #22C55E 100%);
+    background: linear-gradient(135deg, #16A34A 0%, #22C55E 100%);
   }
 
   .gradient-nervous {
-    background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+    background: linear-gradient(135deg, #EA580C 0%, #F59E0B 100%);
   }
 
   .gradient-danger {
-    background: linear-gradient(135deg, #FF2525 0%, #EF4444 100%);
+    background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
   }
 
   /* Utility classes for responsive padding */
