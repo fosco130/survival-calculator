@@ -1,0 +1,67 @@
+.form-indicator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--neutral-200);
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.form-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.form-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.form-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.875rem;
+  color: white;
+  border: 2px solid currentColor;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.form-badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.form-badge-w {
+  background-color: var(--safe);
+  border-color: var(--safe);
+}
+
+.form-badge-d {
+  background-color: #F59E0B;
+  border-color: #F59E0B;
+}
+
+.form-badge-l {
+  background-color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* Most recent match is first (leftmost), so scale in reverse */
+.form-badge:first-child {
+  font-weight: 900;
+  transform: scale(1.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}

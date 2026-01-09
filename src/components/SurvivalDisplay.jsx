@@ -3,6 +3,8 @@ import { getSurvivalColor, getThresholdLabel } from '../data/historicalThreshold
 import { getReactionForPercentage, CALCULATING_MESSAGES } from '../utils/banterMessages';
 import ProgressBar from './ProgressBar';
 import MonteCarloAnimation from './MonteCarloAnimation';
+import FormIndicator from './FormIndicator';
+import HomeAwayBreakdown from './HomeAwayBreakdown';
 import './SurvivalDisplay.css';
 
 function SurvivalDisplay({ team, teamStanding, percentage, calculating, standings, progress = { current: 0, total: 0 } }) {
@@ -144,6 +146,19 @@ function SurvivalDisplay({ team, teamStanding, percentage, calculating, standing
               <span className="points-needed">{pointsNeeded} points</span> from {gamesRemaining} games
             </p>
           </div>
+        )}
+
+        {/* Form Indicator */}
+        {teamStanding.form && !calculating && (
+          <FormIndicator form={teamStanding.form} />
+        )}
+
+        {/* Home/Away Breakdown */}
+        {teamStanding.homeRecord && teamStanding.awayRecord && !calculating && (
+          <HomeAwayBreakdown
+            homeRecord={teamStanding.homeRecord}
+            awayRecord={teamStanding.awayRecord}
+          />
         )}
 
         {/* Calculating State - Enhanced Overlay */}

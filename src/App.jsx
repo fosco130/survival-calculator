@@ -131,6 +131,8 @@ function App() {
                 team={team}
                 fixtures={fixtures}
                 percentage={percentage}
+                standings={standings}
+                teamStanding={teamStanding}
                 onScenariosChange={setScenarios}
               />
 

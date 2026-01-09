@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { getTeamById } from '../data/teams';
+import FixtureDifficulty from './FixtureDifficulty';
 import './ScenarioBuilder.css';
 
-function ScenarioBuilder({ team, fixtures, percentage, onScenariosChange }) {
+function ScenarioBuilder({ team, fixtures, percentage, standings, teamStanding, onScenariosChange }) {
   const [scenarios, setScenarios] = useState({});
 
   if (!team || !fixtures || fixtures.length === 0) {
@@ -170,6 +171,16 @@ function ScenarioBuilder({ team, fixtures, percentage, onScenariosChange }) {
             Reset All
           </button>
         </div>
+      )}
+
+      {/* Fixture Difficulty Analysis */}
+      {standings && teamStanding && (
+        <FixtureDifficulty
+          fixtures={teamFixtures}
+          teamId={team.id}
+          standings={standings}
+          currentPoints={teamStanding.points}
+        />
       )}
     </div>
   );

@@ -50,28 +50,54 @@ async function fetchStandings(competitionCode = 'PL') {
 function transformStandingsData(rawData) {
   // Extract the TOTAL standings table
   const standingsData = rawData.standings.find((s) => s.type === 'TOTAL');
+  const homeData = rawData.standings.find((s) => s.type === 'HOME');
+  const awayData = rawData.standings.find((s) => s.type === 'AWAY');
 
   if (!standingsData) {
     throw new Error('No TOTAL standings data found');
   }
 
   // Transform each team entry
-  const teams = standingsData.table.map((entry) => ({
-    id: entry.team.id,
-    name: entry.team.name,
-    shortName: entry.team.shortName,
-    crest: entry.team.crest, // Include club crest URL from API
-    position: entry.position,
-    points: entry.points,
-    playedGames: entry.playedGames,
-    won: entry.won,
-    draw: entry.draw,
-    lost: entry.lost,
-    goalsFor: entry.goalsFor,
-    goalsAgainst: entry.goalsAgainst,
-    goalDifference: entry.goalDifference,
-    form: entry.form, // Recent form as string "W,L,D,W,W"
-  }));
+  const teams = standingsData.table.map((entry) => {
+    // Find matching home/away records
+    const homeRecord = homeData?.table.find((h) => h.team.id === entry.team.id);
+    const awayRecord = awayData?.table.find((a) => a.team.id === entry.team.id);
+
+    return {
+      id: entry.team.id,
+      name: entry.team.name,
+      shortName: entry.team.shortName,
+      crest: entry.team.crest, // Include club crest URL from API
+      position: entry.position,
+      points: entry.points,
+      playedGames: entry.playedGames,
+      won: entry.won,
+      draw: entry.draw,
+      lost: entry.lost,
+      goalsFor: entry.goalsFor,
+      goalsAgainst: entry.goalsAgainst,
+      goalDifference: entry.goalDifference,
+      form: entry.form, // Recent form as string "W,L,D,W,W"
+      homeRecord: homeRecord
+        ? {
+            played: homeRecord.playedGames,
+            won: homeRecord.won,
+            draw: homeRecord.draw,
+            lost: homeRecord.lost,
+            points: homeRecord.points,
+          }
+        : null,
+      awayRecord: awayRecord
+        ? {
+            played: awayRecord.playedGames,
+            won: awayRecord.won,
+            draw: awayRecord.draw,
+            lost: awayRecord.lost,
+            points: awayRecord.points,
+          }
+        : null,
+    };
+  });
 
   return {
     timestamp: new Date().toISOString(),

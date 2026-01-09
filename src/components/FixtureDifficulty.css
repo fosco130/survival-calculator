@@ -1,0 +1,284 @@
+.fixture-difficulty {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--canvas);
+  border: 3px solid var(--ink);
+  border-radius: 4px;
+  margin-top: 2rem;
+}
+
+.difficulty-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.fixtures-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 2px solid var(--neutral-200);
+  border-bottom: 2px solid var(--neutral-200);
+  padding: 1rem 0;
+}
+
+.fixture-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 120px 100px;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  align-items: center;
+  background: white;
+  border-left: 6px solid transparent;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.fixture-row:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateX(4px);
+}
+
+.fixture-row.difficulty-hard {
+  border-left-color: #DC2626;
+  background: rgba(220, 38, 38, 0.05);
+}
+
+.fixture-row.difficulty-medium {
+  border-left-color: #F59E0B;
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.fixture-row.difficulty-winnable {
+  border-left-color: #059669;
+  background: rgba(5, 150, 105, 0.05);
+}
+
+.fixture-position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.position-number {
+  font-family: var(--font-data);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--neutral-600);
+  padding: 4px 8px;
+  background: var(--neutral-100);
+  border-radius: 3px;
+  min-width: 32px;
+  text-align: center;
+}
+
+.fixture-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fixture-opponent {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.opponent-name {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--ink);
+}
+
+.opponent-position {
+  font-family: var(--font-data);
+  font-size: 0.8125rem;
+  color: var(--neutral-600);
+}
+
+.fixture-venue {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--neutral-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.fixture-venue.home {
+  color: var(--safe);
+}
+
+.fixture-venue.away {
+  color: var(--nervous);
+}
+
+.fixture-difficulty-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: white;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  justify-self: center;
+}
+
+.fixture-row.difficulty-hard .fixture-difficulty-badge {
+  border-color: #DC2626;
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.fixture-row.difficulty-medium .fixture-difficulty-badge {
+  border-color: #F59E0B;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.fixture-row.difficulty-winnable .fixture-difficulty-badge {
+  border-color: #059669;
+  background: rgba(5, 150, 105, 0.1);
+}
+
+.difficulty-emoji {
+  font-size: 1rem;
+}
+
+.difficulty-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+
+.expected-points {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  justify-self: end;
+}
+
+.points-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--neutral-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.points-value {
+  font-family: var(--font-data);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.points-unit {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  color: var(--neutral-600);
+  font-weight: 600;
+}
+
+.fixture-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--neutral-50);
+  border: 2px solid var(--neutral-200);
+  border-radius: 4px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.summary-row:last-of-type {
+  border-bottom: none;
+}
+
+.summary-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--neutral-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-value {
+  font-family: var(--font-data);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.summary-badge {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-badge.safe {
+  background: var(--safe);
+  color: white;
+}
+
+.summary-badge.danger {
+  background: var(--danger);
+  color: white;
+}
+
+.fixture-verdict {
+  padding: 1rem;
+  background: var(--matchday-bg);
+  border-left: 4px solid var(--matchday);
+  border-radius: 4px;
+}
+
+.verdict-text {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 768px) {
+  .fixture-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .fixture-position {
+    display: none;
+  }
+
+  .expected-points {
+    justify-self: auto;
+  }
+}

@@ -1,0 +1,118 @@
+.home-away-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--neutral-50);
+  border: 2px solid var(--neutral-200);
+  border-radius: 4px;
+}
+
+.performance-split {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.home-performance,
+.away-performance {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.performance-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.performance-emoji {
+  font-size: 1.5rem;
+}
+
+.performance-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.performance-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--neutral-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-family: var(--font-data);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.vs-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--neutral-600);
+  padding: 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.performance-insight {
+  padding: 1rem;
+  background: white;
+  border: 2px solid var(--neutral-200);
+  border-left: 6px solid var(--matchday);
+  border-radius: 4px;
+}
+
+.insight-text {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 768px) {
+  .performance-split {
+    grid-template-columns: 1fr;
+  }
+
+  .vs-divider {
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+  }
+}
