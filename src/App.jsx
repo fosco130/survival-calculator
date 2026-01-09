@@ -14,6 +14,9 @@ import LoadingSkeleton from './components/LoadingSkeleton';
 import ErrorState from './components/ErrorState';
 import MethodologyModal from './components/MethodologyModal';
 import LeaguePicker from './components/LeaguePicker';
+import SurvivalTimeline from './components/SurvivalTimeline';
+import RivalsComparison from './components/RivalsComparison';
+import ScenarioSnapshots from './components/ScenarioSnapshots';
 import './App.css';
 
 function App() {
@@ -145,6 +148,25 @@ function App() {
 
               {/* Share Buttons */}
               <ShareButtons team={team} percentage={percentage} />
+
+              {/* Phase 5: New Features */}
+
+              {/* Survival Timeline - Track odds changes */}
+              {percentage !== null && (
+                <SurvivalTimeline teamId={team.id} currentPercentage={percentage} />
+              )}
+
+              {/* Rivals Comparison - Head-to-head with relegation zone rivals */}
+              {survivalPercentages && (
+                <RivalsComparison
+                  yourTeamId={team.id}
+                  standings={standings}
+                  survivalPercentages={survivalPercentages}
+                />
+              )}
+
+              {/* Scenario Snapshots - Save and compare predictions */}
+              <ScenarioSnapshots teamId={team.id} currentPercentage={percentage} scenarios={scenarios} />
             </div>
           )}
 

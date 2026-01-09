@@ -1,0 +1,287 @@
+.rivals-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--canvas);
+  border: 3px solid var(--ink);
+  border-radius: 4px;
+  margin-top: 2rem;
+}
+
+.comparison-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.comparison-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border: 2px solid var(--neutral-200);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.team-card.your-team {
+  border-color: var(--safe);
+  border-left: 6px solid var(--safe);
+}
+
+.team-card.rival-team {
+  border-color: var(--danger);
+  border-left: 6px solid var(--danger);
+}
+
+.card-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1rem;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.card-team-name {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+.card-position {
+  font-family: var(--font-data);
+  font-size: 0.875rem;
+  color: var(--neutral-600);
+  font-weight: 600;
+}
+
+.card-percentage {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.card-context {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.context-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--neutral-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+}
+
+.context-value {
+  font-family: var(--font-data);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.vs-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.vs-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.vs-icon {
+  font-size: 1.5rem;
+}
+
+.comparison-message {
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  border-left: 6px solid transparent;
+}
+
+.comparison-message.winning {
+  background: var(--safe-bg);
+  border-left-color: var(--safe);
+}
+
+.comparison-message.losing {
+  background: var(--danger-bg);
+  border-left-color: var(--danger);
+}
+
+.message-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.rival-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--neutral-50);
+  border: 2px solid var(--neutral-200);
+  border-radius: 4px;
+}
+
+.selector-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--neutral-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.rival-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.rival-btn {
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 2px solid var(--neutral-300);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rival-btn:hover {
+  border-color: var(--matchday);
+  background: var(--matchday-bg);
+}
+
+.rival-btn.active {
+  background: var(--matchday);
+  border-color: var(--matchday);
+  color: white;
+}
+
+.comparison-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border: 2px solid var(--neutral-200);
+  border-radius: 4px;
+}
+
+.stat-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stat-section-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--neutral-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.stat-bar-container {
+  display: flex;
+  height: 32px;
+  background: var(--neutral-100);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid var(--neutral-200);
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.4s ease;
+  min-width: 60px;
+}
+
+.stat-bar.you {
+  background: var(--safe);
+}
+
+.stat-bar.rival {
+  background: var(--danger);
+}
+
+.bar-percentage {
+  font-family: var(--font-data);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 768px) {
+  .comparison-container {
+    grid-template-columns: 1fr;
+  }
+
+  .vs-indicator {
+    order: -1;
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-percentage {
+    font-size: 2rem;
+  }
+}
