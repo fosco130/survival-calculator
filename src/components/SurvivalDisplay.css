@@ -102,61 +102,54 @@
   }
 }
 
-/* ===== SURVIVAL CARD ===== */
+/* ===== SURVIVAL CARD - MATCHDAY AESTHETIC ===== */
 
 .survival-card {
-  background: #FFFFFF;
-  border: 2px solid #E5E7EB;
-  border-left: 4px solid;
-  border-radius: 12px;
+  background: var(--canvas);
+  border: 3px solid var(--ink);
+  border-left: 8px solid;
+  border-radius: 0;
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* Newspaper-style offset shadow */
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
 }
 
+/* Red accent bar at top */
 .survival-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 20% 30%, var(--team-glow) 0%, transparent 50%);
-  pointer-events: none;
-  border-radius: 12px;
-  opacity: 0;
+  height: 6px;
+  background: var(--matchday);
+  border-radius: 0;
 }
 
 .survival-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 0px;
-  background: linear-gradient(90deg, var(--team-color, #9CA3AF) 0%, transparent 100%);
-  border-radius: 12px 12px 0 0;
+  display: none;
 }
 
 .survival-card:hover {
-  border-color: #D1D5DB;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 /* Color variants */
 
 .survival-card-safe {
-  border-left-color: #16A34A;
+  border-left-color: var(--safe);
 }
 
 .survival-card-nervous {
-  border-left-color: #EA580C;
+  border-left-color: var(--nervous);
 }
 
 .survival-card-danger {
-  border-left-color: #DC2626;
+  border-left-color: var(--danger);
 }
 
 /* ===== PERCENTAGE SECTION ===== */
@@ -169,12 +162,13 @@
 
 .percentage-number {
   font-size: 8rem;
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   margin: 0;
   text-align: center;
-  font-family: 'Bebas Neue', var(--font-display, sans-serif);
+  font-family: var(--font-display);
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 .percentage-number.animated {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMockData, getMockStandings } from '../lib/mockData';
 
-export function useStandings() {
+export function useStandings(competitionCode = 'PL') {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,7 +19,9 @@ export function useStandings() {
         if (useMockData) {
           standingsData = await getMockStandings();
         } else {
-          const response = await fetch('/api/get-standings');
+          const response = await fetch(
+            `/api/get-standings?competition=${encodeURIComponent(competitionCode)}`
+          );
 
           if (!response.ok) {
             throw new Error(
@@ -51,7 +53,7 @@ export function useStandings() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [competitionCode]);
 
   return { data, loading, error };
 }

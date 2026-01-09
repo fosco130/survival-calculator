@@ -57,8 +57,8 @@ function ScenarioBuilder({ team, fixtures, percentage, onScenariosChange }) {
   return (
     <div className="scenario-builder">
       <div className="scenario-header">
-        <h3 className="scenario-title">PLAY GOD</h3>
-        <p className="scenario-subtitle">Your fate in your hands ({teamFixtures.length} fixtures)</p>
+        <h3 className="scenario-title">PICK YOUR POISON</h3>
+        <p className="scenario-subtitle">Test your survival strategy ({teamFixtures.length} fixtures left)</p>
       </div>
 
       <div className="scenario-container">
@@ -87,33 +87,67 @@ function ScenarioBuilder({ team, fixtures, percentage, onScenariosChange }) {
               </div>
 
               <div className="result-buttons">
-                <button
-                  className={`result-btn result-win ${
-                    currentResult === 'HOME_WIN' ? 'active' : ''
-                  }`}
-                  onClick={() => handleResultClick(fixture.id, 'HOME_WIN')}
-                  title="Win"
-                >
-                  W
-                </button>
-                <button
-                  className={`result-btn result-draw ${
-                    currentResult === 'DRAW' ? 'active' : ''
-                  }`}
-                  onClick={() => handleResultClick(fixture.id, 'DRAW')}
-                  title="Draw"
-                >
-                  D
-                </button>
-                <button
-                  className={`result-btn result-loss ${
-                    currentResult === 'HOME_LOSS' ? 'active' : ''
-                  }`}
-                  onClick={() => handleResultClick(fixture.id, 'HOME_LOSS')}
-                  title="Loss"
-                >
-                  L
-                </button>
+                {isHomeGame ? (
+                  <>
+                    <button
+                      className={`result-btn result-win ${
+                        currentResult === 'HOME_WIN' ? 'active' : ''
+                      }`}
+                      onClick={() => handleResultClick(fixture.id, 'HOME_WIN')}
+                      title="Win"
+                    >
+                      W
+                    </button>
+                    <button
+                      className={`result-btn result-draw ${
+                        currentResult === 'DRAW' ? 'active' : ''
+                      }`}
+                      onClick={() => handleResultClick(fixture.id, 'DRAW')}
+                      title="Draw"
+                    >
+                      D
+                    </button>
+                    <button
+                      className={`result-btn result-loss ${
+                        currentResult === 'HOME_LOSS' ? 'active' : ''
+                      }`}
+                      onClick={() => handleResultClick(fixture.id, 'HOME_LOSS')}
+                      title="Loss"
+                    >
+                      L
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className={`result-btn result-win ${
+                        currentResult === 'AWAY_WIN' ? 'active' : ''
+                      }`}
+                      onClick={() => handleResultClick(fixture.id, 'AWAY_WIN')}
+                      title="Win"
+                    >
+                      W
+                    </button>
+                    <button
+                      className={`result-btn result-draw ${
+                        currentResult === 'DRAW' ? 'active' : ''
+                      }`}
+                      onClick={() => handleResultClick(fixture.id, 'DRAW')}
+                      title="Draw"
+                    >
+                      D
+                    </button>
+                    <button
+                      className={`result-btn result-loss ${
+                        currentResult === 'AWAY_LOSS' ? 'active' : ''
+                      }`}
+                      onClick={() => handleResultClick(fixture.id, 'AWAY_LOSS')}
+                      title="Loss"
+                    >
+                      L
+                    </button>
+                  </>
+                )}
               </div>
 
               {currentResult && (

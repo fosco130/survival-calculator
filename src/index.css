@@ -1,38 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Background colors - LIGHT THEME */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F5F5F5;
-  --bg-tertiary: #FAFAFA;
-  --bg-section: #F9FAFB;
-  --bg-elevated: #FFFFFF;
-  --bg-rage: #FEE2E2;
+  /* Base Colors - MATCHDAY AESTHETIC */
+  --canvas: #FFFEF7;          /* Warm off-white (newspaper) */
+  --ink: #1A1A1A;             /* Deep black */
+  --shadow: rgba(0,0,0,0.08); /* Subtle depth */
 
-  /* Text colors - LIGHT THEME */
-  --text-primary: #1A1A1A;
-  --text-secondary: #6B7280;
+  /* Status Colors (BOLD & DRAMATIC) */
+  --safe: #059669;            /* Emerald 600 - survival */
+  --safe-bg: #D1FAE5;         /* Emerald 100 */
+  --nervous: #DC6B19;         /* Orange 600 - danger */
+  --nervous-bg: #FED7AA;      /* Orange 200 */
+  --danger: #DC2626;          /* Red 600 - relegated */
+  --danger-bg: #FEE2E2;       /* Red 100 */
+
+  /* Accent Colors */
+  --primary: #2563EB;         /* Blue 600 - interactive */
+  --primary-hover: #1D4ED8;   /* Blue 700 */
+
+  /* Matchday Red (SIGNATURE COLOR) */
+  --matchday: #C1121F;        /* Bold red accent */
+  --matchday-bg: #FFF1F2;     /* Rose 50 */
+
+  /* Neutrals (WARM TONES) */
+  --neutral-50: #FAFAF9;      /* Stone 50 */
+  --neutral-100: #F5F5F4;     /* Stone 100 */
+  --neutral-200: #E7E5E4;     /* Stone 200 */
+  --neutral-300: #D6D3D1;     /* Stone 300 */
+  --neutral-600: #57534E;     /* Stone 600 */
+  --neutral-900: #1C1917;     /* Stone 900 */
+
+  /* Legacy color mapping (for compatibility) */
+  --bg-primary: var(--canvas);
+  --bg-secondary: var(--neutral-100);
+  --bg-tertiary: var(--neutral-50);
+  --bg-section: var(--neutral-50);
+  --bg-elevated: var(--canvas);
+  --bg-rage: var(--danger-bg);
+  --text-primary: var(--ink);
+  --text-secondary: var(--neutral-600);
   --text-tertiary: #9CA3AF;
-
-  /* Border colors */
-  --border-light: #E5E7EB;
-  --border-medium: #D1D5DB;
-
-  /* Status colors - MUTED & PROFESSIONAL */
-  --color-safe: #16A34A;
+  --border-light: var(--neutral-200);
+  --border-medium: var(--neutral-300);
+  --color-safe: var(--safe);
   --color-safe-dim: #22C55E;
-  --color-nervous: #EA580C;
-  --color-danger: #DC2626;
+  --color-nervous: var(--nervous);
+  --color-danger: var(--danger);
   --color-danger-dim: #EF4444;
-  --color-electric: #2563EB;
+  --color-electric: var(--primary);
 
-  /* Typography */
-  --font-display: 'Bebas Neue', 'Inter', sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  /* Typography - NEW SYSTEM */
+  --font-display: 'Archivo Black', 'Inter', sans-serif;  /* Bold headlines */
+  --font-body: 'Inter', system-ui, sans-serif;           /* Body text */
+  --font-data: 'JetBrains Mono', monospace;              /* Numbers & data */
 
   /* Display text sizes */
   --text-display-xl: 8rem;

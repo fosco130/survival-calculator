@@ -7,6 +7,7 @@ export const teams = [
     slug: 'arsenal',
     name: 'Arsenal',
     shortName: 'ARS',
+    leagues: ['PL'],
     colors: {
       primary: '#EF0107',
       secondary: '#FFFFFF',
@@ -17,6 +18,7 @@ export const teams = [
     slug: 'aston-villa',
     name: 'Aston Villa',
     shortName: 'AVL',
+    leagues: ['PL'],
     colors: {
       primary: '#670E36',
       secondary: '#95BFE5',
@@ -27,6 +29,7 @@ export const teams = [
     slug: 'bournemouth',
     name: 'AFC Bournemouth',
     shortName: 'BOU',
+    leagues: ['PL'],
     colors: {
       primary: '#DA291C',
       secondary: '#000000',
@@ -37,6 +40,7 @@ export const teams = [
     slug: 'brentford',
     name: 'Brentford',
     shortName: 'BRE',
+    leagues: ['PL'],
     colors: {
       primary: '#E30613',
       secondary: '#FBB800',
@@ -47,6 +51,7 @@ export const teams = [
     slug: 'brighton',
     name: 'Brighton & Hove Albion',
     shortName: 'BHA',
+    leagues: ['PL'],
     colors: {
       primary: '#0057B8',
       secondary: '#FFFFFF',
@@ -57,6 +62,7 @@ export const teams = [
     slug: 'chelsea',
     name: 'Chelsea',
     shortName: 'CHE',
+    leagues: ['PL'],
     colors: {
       primary: '#034694',
       secondary: '#FFFFFF',
@@ -67,6 +73,7 @@ export const teams = [
     slug: 'crystal-palace',
     name: 'Crystal Palace',
     shortName: 'CRY',
+    leagues: ['PL'],
     colors: {
       primary: '#1B458F',
       secondary: '#C4122E',
@@ -77,6 +84,7 @@ export const teams = [
     slug: 'everton',
     name: 'Everton',
     shortName: 'EVE',
+    leagues: ['PL'],
     colors: {
       primary: '#003399',
       secondary: '#FFFFFF',
@@ -87,6 +95,7 @@ export const teams = [
     slug: 'fulham',
     name: 'Fulham',
     shortName: 'FUL',
+    leagues: ['PL'],
     colors: {
       primary: '#000000',
       secondary: '#FFFFFF',
@@ -97,6 +106,7 @@ export const teams = [
     slug: 'sunderland',
     name: 'Sunderland',
     shortName: 'SUN',
+    leagues: ['ELC'],
     colors: {
       primary: '#EB6E1F',
       secondary: '#FFFFFF',
@@ -107,6 +117,7 @@ export const teams = [
     slug: 'liverpool',
     name: 'Liverpool',
     shortName: 'LIV',
+    leagues: ['PL'],
     colors: {
       primary: '#C8102E',
       secondary: '#FFFFFF',
@@ -117,6 +128,7 @@ export const teams = [
     slug: 'leeds',
     name: 'Leeds United',
     shortName: 'LEE',
+    leagues: ['ELC'],
     colors: {
       primary: '#FFCD00',
       secondary: '#1D428A',
@@ -127,6 +139,7 @@ export const teams = [
     slug: 'man-city',
     name: 'Manchester City',
     shortName: 'MCI',
+    leagues: ['PL'],
     colors: {
       primary: '#6CABDD',
       secondary: '#FFFFFF',
@@ -137,6 +150,7 @@ export const teams = [
     slug: 'man-utd',
     name: 'Manchester United',
     shortName: 'MUN',
+    leagues: ['PL'],
     colors: {
       primary: '#DA291C',
       secondary: '#FBE122',
@@ -147,6 +161,7 @@ export const teams = [
     slug: 'newcastle',
     name: 'Newcastle United',
     shortName: 'NEW',
+    leagues: ['PL'],
     colors: {
       primary: '#241F20',
       secondary: '#FFFFFF',
@@ -157,6 +172,7 @@ export const teams = [
     slug: 'nottm-forest',
     name: 'Nottingham Forest',
     shortName: 'NFO',
+    leagues: ['PL'],
     colors: {
       primary: '#DD0000',
       secondary: '#FFFFFF',
@@ -167,6 +183,7 @@ export const teams = [
     slug: 'west-ham',
     name: 'West Ham United',
     shortName: 'WHU',
+    leagues: ['PL'],
     colors: {
       primary: '#7A263A',
       secondary: '#1BB1E7',
@@ -177,6 +194,7 @@ export const teams = [
     slug: 'burnley',
     name: 'Burnley',
     shortName: 'BUR',
+    leagues: ['PL'],
     colors: {
       primary: '#6C1D45',
       secondary: '#87CEEB',
@@ -187,6 +205,7 @@ export const teams = [
     slug: 'tottenham',
     name: 'Tottenham Hotspur',
     shortName: 'TOT',
+    leagues: ['PL'],
     colors: {
       primary: '#132257',
       secondary: '#FFFFFF',
@@ -197,6 +216,7 @@ export const teams = [
     slug: 'wolverhampton',
     name: 'Wolverhampton Wanderers',
     shortName: 'WOL',
+    leagues: ['PL'],
     colors: {
       primary: '#FDB913',
       secondary: '#000000',
@@ -214,6 +234,10 @@ export function getTeamById(id) {
 
 export function getAllTeams() {
   return teams;
+}
+
+export function getTeamsByLeague(leagueCode) {
+  return teams.filter(team => team.leagues && team.leagues.includes(leagueCode));
 }
 
 // Create a map for quick lookup

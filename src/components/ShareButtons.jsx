@@ -34,8 +34,8 @@ function ShareButtons({ team, percentage }) {
   return (
     <div className="share-buttons">
       <div className="share-header">
-        <h3 className="share-title">RATIO YOUR RIVALS</h3>
-        <p className="share-subtitle">Talk your talk</p>
+        <h3 className="share-title">SHARE THE CARNAGE</h3>
+        <p className="share-subtitle">Let your mates know who's going down</p>
       </div>
 
       <div className="share-buttons-group">

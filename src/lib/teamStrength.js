@@ -2,6 +2,7 @@
 // Phase 1 uses PPG + Form (xG comes in Phase 3)
 
 import { SIMULATION_PARAMS } from '../data/constants';
+import { parseFormToPoints, getMaxFormPoints } from '../utils/formParser';
 
 export function calculateTeamStrength(team) {
   if (!team || !team.playedGames || team.playedGames === 0) {
@@ -12,14 +13,20 @@ export function calculateTeamStrength(team) {
   const ppg = team.points / team.playedGames;
   const ppgStrength = ppg * SIMULATION_PARAMS.WEIGHT_PPG_PHASE1;
 
-  // Form: points from last 6 games (30% weight in Phase 1)
-  // Fallback to current PPG if last6 data not available
-  const last6Points = team.last6Points || team.points;
-  const last6Games = Math.min(team.playedGames, 6);
-  const formStrength =
-    last6Games > 0
-      ? (last6Points / (last6Games * 3)) * SIMULATION_PARAMS.WEIGHT_FORM_PHASE1
-      : 0;
+  // Form: parse API form string (e.g. "W,L,D,W,W") for recent performance (30% weight in Phase 1)
+  // Fallback to PPG-based estimate if form data not available
+  let formStrength = 0;
+  if (team.form) {
+    const formPoints = parseFormToPoints(team.form);
+    const maxFormPoints = getMaxFormPoints(team.form);
+    formStrength =
+      maxFormPoints > 0
+        ? (formPoints / maxFormPoints) * SIMULATION_PARAMS.WEIGHT_FORM_PHASE1
+        : 0;
+  } else {
+    // Fallback: estimate 30% of season PPG as recent form
+    formStrength = ppg * 0.3 * SIMULATION_PARAMS.WEIGHT_FORM_PHASE1;
+  }
 
   // Combine weighted scores
   const totalStrength = ppgStrength + formStrength;

@@ -7,51 +7,69 @@
   flex-direction: column;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER - MATCHDAY AESTHETIC ===== */
 
 .header {
-  background: #FFFFFF;
-  border-bottom: 1px solid #E5E7EB;
+  background: linear-gradient(135deg, var(--matchday) 0%, #8B0D16 100%);
+  color: var(--canvas);
+  padding: 0;
+  border-bottom: 3px solid var(--ink);
   position: relative;
   overflow: hidden;
 }
 
+/* Subtle diagonal stripe pattern overlay */
 .header::before {
-  display: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 2px,
+      transparent 2px,
+      transparent 6px
+    );
+  pointer-events: none;
 }
 
 .header-content {
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.header-top {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
 }
 
 .header-title {
-  font-family: var(--font-display, 'Bebas Neue', sans-serif);
-  font-size: 2.5rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #1A1A1A;
-  margin: 0 0 0.5rem 0;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--canvas);
+  margin: 0;
+  padding: 1rem 0;
   text-transform: uppercase;
   line-height: 1.1;
-  text-shadow: none;
-  animation: none;
-}
-
-@keyframes titleGlow {
-  0%, 100% {
-    text-shadow: none;
-  }
-  50% {
-    text-shadow: none;
-  }
+  text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
 .header-tagline {
   font-size: 1.1rem;
-  color: #6B7280;
+  color: var(--canvas);
   margin: 0 0 1.5rem 0;
   font-weight: 500;
   letter-spacing: 0.02em;
+  opacity: 0.95;
 }
 
 .methodology-button {

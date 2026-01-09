@@ -24,8 +24,8 @@ function RivalsPanel({ currentTeamId, standings, survivalPercentages = {} }) {
   return (
     <div className="rivals-panel">
       <div className="rivals-header">
-        <h3 className="rivals-title">THE DEATH ZONE</h3>
-        <p className="rivals-subtitle">Who's in the mud? ({rivalTeams.length} teams)</p>
+        <h3 className="rivals-title">RELEGATION BATTLE</h3>
+        <p className="rivals-subtitle">The {rivalTeams.length} teams fighting for survival</p>
       </div>
 
       <div className="rivals-table">

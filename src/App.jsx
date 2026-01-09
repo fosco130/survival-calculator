@@ -13,6 +13,7 @@ import ShareButtons from './components/ShareButtons';
 import LoadingSkeleton from './components/LoadingSkeleton';
 import ErrorState from './components/ErrorState';
 import MethodologyModal from './components/MethodologyModal';
+import LeaguePicker from './components/LeaguePicker';
 import './App.css';
 
 function App() {
@@ -22,13 +23,16 @@ function App() {
   // Methodology modal state
   const [isMethodologyOpen, setIsMethodologyOpen] = useState(false);
 
+  // League selection state (defaults to Championship for Leeds)
+  const [selectedLeague, setSelectedLeague] = useState('ELC');
+
   // URL-based team selection (defaults to Leeds)
   const [teamSlug, setTeamSlug] = useUrlTeam('leeds');
   const team = getTeamBySlug(teamSlug);
 
-  // Fetch data from Netlify Functions
-  const { data: standingsData, loading: loadingStandings, error: standingsError } = useStandings();
-  const { data: fixturesData, loading: loadingFixtures, error: fixturesError } = useFixtures();
+  // Fetch data from Netlify Functions with selected league
+  const { data: standingsData, loading: loadingStandings, error: standingsError } = useStandings(selectedLeague);
+  const { data: fixturesData, loading: loadingFixtures, error: fixturesError } = useFixtures(selectedLeague);
 
   // Extract arrays from API responses
   const standings = standingsData?.teams || null;
@@ -54,10 +58,17 @@ function App() {
 
   useEffect(() => {
     // Update page title with team name
-    const teamName = team?.name || 'Premier League';
+    const leagueNames = {
+      'PL': 'Premier League',
+      'ELC': 'Championship',
+      'EL1': 'League One',
+      'EL2': 'League Two',
+    };
+    const leagueName = leagueNames[selectedLeague] || 'Football';
+    const teamName = team?.name || leagueName;
     const percentageStr = percentage ? ` - ${Math.round(percentage * 10) / 10}%` : '';
-    document.title = `${teamName} Survival Odds${percentageStr} | Premier League Survival Calculator`;
-  }, [team, percentage]);
+    document.title = `${teamName} Survival Odds${percentageStr} | ${leagueName} Survival Calculator`;
+  }, [team, percentage, selectedLeague]);
 
   return (
     <div className="app-bg">
@@ -65,8 +76,14 @@ function App() {
       <header className="header">
         <div className="container-app py-8 md:py-12">
           <div className="header-content">
-            <h1 className="header-title">Relegation Calculator</h1>
-            <p className="header-tagline">Calculate any team's chances of survival</p>
+            <div className="header-top">
+              <LeaguePicker
+                selectedLeague={selectedLeague}
+                onLeagueChange={setSelectedLeague}
+              />
+            </div>
+            <h1 className="header-title">ARE YOU GOING DOWN?</h1>
+            <p className="header-tagline">Monte Carlo doesn't lie. Your survival odds, calculated.</p>
             <button
               className="methodology-button"
               onClick={() => setIsMethodologyOpen(true)}
@@ -85,6 +102,7 @@ function App() {
           {/* Team Selector */}
           {!isLoading && !hasError && standings && (
             <TeamSelector
+              selectedLeague={selectedLeague}
               selectedTeamId={team?.id}
               onTeamSelect={setTeamSlug}
               standings={standings}

@@ -1,9 +1,9 @@
-import { getAllTeams, getTeamById } from '../data/teams';
+import { getTeamsByLeague, getTeamById } from '../data/teams';
 import { getSurvivalColor } from '../data/historicalThresholds';
 import './TeamSelector.css';
 
-function TeamSelector({ selectedTeamId, onTeamSelect, standings }) {
-  const allTeams = getAllTeams();
+function TeamSelector({ selectedLeague, selectedTeamId, onTeamSelect, standings }) {
+  const allTeams = getTeamsByLeague(selectedLeague);
 
   const handleTeamClick = (teamSlug) => {
     onTeamSelect(teamSlug);
@@ -29,9 +29,9 @@ function TeamSelector({ selectedTeamId, onTeamSelect, standings }) {
   return (
     <div className="team-selector-wrapper">
       <div className="selector-header">
-        <h2 className="selector-title">Select a Team</h2>
+        <h2 className="selector-title">WHO'S IN TROUBLE?</h2>
         <p className="selector-instructions">
-          Choose any Premier League team to calculate their survival odds
+          Pick a team and find out if they're laughing or crying
         </p>
       </div>
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMockData, getMockFixtures } from '../lib/mockData';
 
-export function useFixtures() {
+export function useFixtures(competitionCode = 'PL') {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,7 +19,9 @@ export function useFixtures() {
         if (useMockData) {
           fixturesData = await getMockFixtures();
         } else {
-          const response = await fetch('/api/get-fixtures');
+          const response = await fetch(
+            `/api/get-fixtures?competition=${encodeURIComponent(competitionCode)}`
+          );
 
           if (!response.ok) {
             throw new Error(
@@ -51,7 +53,7 @@ export function useFixtures() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [competitionCode]);
 
   return { data, loading, error };
 }
