@@ -18,7 +18,7 @@ export function useMultiTeamSimulation(standings, fixtures) {
     setCalculating(true);
 
     // Defer calculation to avoid blocking UI
-    const timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(async () => {
       try {
         const percentages = {};
 
@@ -27,18 +27,18 @@ export function useMultiTeamSimulation(standings, fixtures) {
         const bottomTeams = sortedStandings.slice(10); // Positions 11-20
 
         // Run simulation for each bottom team
-        bottomTeams.forEach((standing) => {
+        for (const standing of bottomTeams) {
           const team = getTeamById(standing.id);
           if (team) {
             try {
-              const result = runSurvivalSimulation(team, standings, fixtures, {});
+              const result = await runSurvivalSimulation(team, standings, fixtures, {});
               percentages[standing.id] = result;
             } catch (error) {
               console.warn(`Error simulating team ${team.name}:`, error);
               percentages[standing.id] = 0.5; // Default to 50% on error
             }
           }
-        });
+        }
 
         setSurvivalPercentages(percentages);
       } catch (error) {
